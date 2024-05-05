@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:structure": "eslint --parser ./node_modules/eslint-plugin-project-structure/dist/parser.js --rule project-structure/file-structure:error --ext .js,.jsx,.ts,.tsx,.html,.css,.svg,.png,.jpg,.json,.md .",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -31,6 +32,7 @@
     "@typescript-eslint/parser": "^7.1.1",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.57.0",
+    "eslint-plugin-project-structure": "^1.4.7",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "jsdom": "^24.0.0",

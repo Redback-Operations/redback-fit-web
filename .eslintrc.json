@@ -15,9 +15,14 @@
 	},
 	"plugins": [
 		"@typescript-eslint",
-		"react-refresh"
+		"react-refresh",
+		"project-structure"
 	],
+	"settings": {
+        "project-structure/config-path": "project-structure.json"
+    },
 	"rules": {
+		"project-structure/file-structure": "error",
 		"indent": [
 			"warn",
 			"tab"

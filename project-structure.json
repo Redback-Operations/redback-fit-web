@@ -1,0 +1,149 @@
+{
+	"structure": {
+        "children": [
+            {
+                "name": "public",
+                "children": []
+            },
+            {
+                "name": "src",
+                "children": [
+                    {
+                        "name": "main",
+                        "extension": ["tsx"]
+                    },
+					{
+						"name": "assets",
+						"children": []
+					},
+					{
+						"name": "vite-env.d",
+						"extension": ["ts"]
+					},
+					{
+						"name": "components",
+						"children": [
+                            {
+                                "name": "/^${{PascalCase}}$/",
+                                "children": [
+									{
+										"name": "/^${{ParentName}}$/",
+										"extension": ["tsx"]
+									},
+									{
+										"name": "/^${{ParentName}}(\\.(test|style|stories))?$/",
+										"extension": ["tsx", "ts"]
+									}
+								]
+                            }
+                        ]
+					},
+					{
+						"name": "routes",
+						"children": [
+                            {
+                                "name": "/^${{PascalCase}}$/",
+                                "children": [
+									{
+										"name": "/^${{ParentName}}$/",
+										"extension": ["tsx"]
+									},
+									{
+										"name": "/^${{ParentName}}(\\.(test|style|stories))?$/",
+										"extension": ["tsx", "ts"]
+									}
+								]
+                            }
+                        ]
+					}
+                ]
+            },
+			{
+				"name": "templates",
+				"children": [
+					{
+						"name": "TemplateName",
+						"extension": ["tsx"]
+					},
+					{
+						"name": "TemplateName.style",
+						"extension": ["ts", "tsx"]
+					},
+					{
+						"name": "TemplateName.test",
+						"extension": ["tsx"]
+					},
+					{
+						"name": "TemplateName.stories",
+						"extension": ["ts", "tsx"]
+					}
+				]
+			},
+			{
+				"name": "test-mocks",
+				"children": []
+			},
+			{
+				"name": ".eslintrc",
+				"extension": ["json"]
+			},
+			{
+				"name": ".babelrc"
+			},
+			{
+				"name": ".gitignore"
+			},
+			{
+				"name": "generate-react-cli",
+				"extension": ["json"]
+			},
+			{
+				"name": "index",
+				"extension": ["html"]
+			},
+			{
+				"name": "jest.config",
+				"extension": ["js", "ts"]
+			},
+			{
+				"name": "jest.setup",
+				"extension": ["js", "ts"]
+			},
+			{
+				"name": "LICENSE"
+			},
+			{
+				"name": "package",
+				"extension": ["json"]
+			},
+			{
+				"name": "package-lock",
+				"extension": ["json"]
+			},
+			{
+				"name": "project-structure",
+				"extension": ["json"]
+			},
+			{
+				"name": "README",
+				"extension": ["md"]
+			},
+			{
+				"name": "tsconfig",
+				"extension": ["json"]
+			},
+			{
+				"name": "tsconfig.node",
+				"extension": ["json"]
+			},
+			{
+				"name": "vite",
+				"extension": ["config.ts"]
+			},
+			{
+				"name": "vite.config",
+				"extension": ["ts"]
+			}
+        ]
+    }
+}
