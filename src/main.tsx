@@ -1,24 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {
-	createBrowserRouter,
-	RouterProvider,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './routes/Root/Root.tsx';
+import LoginPage from './routes/LoginPage/LoginPage.tsx';
+import Dashboard from './routes/Dashboard/Dashboard.tsx';
+import DataPredictions from './components/DashboardDataPredictions/DashboardDataPredictions.tsx';
+import DashboardLanding from './components/DashboardLanding/DashboardLanding.tsx';
 
 const router = createBrowserRouter([
 	{
-		element: <Root/>,
-		// Handling errors inside Root so we can keep the core layout around the error message
-		errorElement: <Root/>,
+		element: <Root />,
+		errorElement: <Root />,
 		children: [
 			{
-				path: '/',
-				element: <div>Home</div>,
+				path: 'login',
+				element: <LoginPage />
 			},
 			{
-				path: 'about',
-				element: <div>About</div>,
+				path: 'dashboard',
+				element: <Dashboard />,
+				children: [
+					{
+						path: '',
+						element: <DashboardLanding />,
+					},
+					{
+						path: 'data-predictions',
+						element: <DataPredictions />,
+					}
+				]
 			}
 		],
 	},
