@@ -33,10 +33,6 @@
 									{
 										"name": "/^${{ParentName}}(\\.(test|style|stories))?$/",
 										"extension": ["tsx", "ts"]
-									},
-									{
-										"name": "/^${{ParentName}}(\\.(module))?$/",
-										"extension": ["css"]
 									}
 								]
                             }
@@ -55,10 +51,6 @@
 									{
 										"name": "/^${{ParentName}}(\\.(test|style|stories))?$/",
 										"extension": ["tsx", "ts"]
-									},
-									{
-										"name": "/^${{ParentName}}(\\.(module))?$/",
-										"extension": ["css"]
 									}
 								]
                             }
@@ -155,6 +147,10 @@
 			{
 				"name": "vite.config",
 				"extension": ["ts"]
+			},
+			{
+				"name": "pull_request_template",
+				"extension": ["md"]
 			}
         ]
     }

@@ -22,11 +22,17 @@
         "project-structure/config-path": "project-structure.json"
     },
 	"rules": {
+		"no-irregular-whitespace": "off",
 		"project-structure/file-structure": "error",
-		"indent": [
-			"warn",
-			"tab"
-		],
+		"indent": ["error", "tab", {
+			"SwitchCase": 1,
+			"FunctionExpression": {
+				"parameters": 1,
+				"body": 1
+			},
+			"MemberExpression": 1,
+			"offsetTernaryExpressions": true
+		}],
 		"quotes": [
 			"warn",
 			"single"
@@ -55,6 +61,7 @@
 		"@typescript-eslint/no-var-requires": "off",
 		"@typescript-eslint/no-inferrable-types": "off",
 		"@typescript-eslint/ban-ts-comment": "off",
+		"@typescript-eslint/no-unused-vars": "warn",
 		"react-refresh/only-export-components": [
 			"warn",
 			{ "allowConstantExport": true }
