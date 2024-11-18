@@ -7,6 +7,7 @@ import Dashboard from './routes/Dashboard/Dashboard.tsx';
 import HomePage from './routes/HomePage/HomePage.tsx';
 import DataPredictions from './components/DashboardDataPredictions/DashboardDataPredictions.tsx';
 import DashboardLanding from './components/DashboardLanding/DashboardLanding.tsx';
+import Categories from './components/Categories/Categories.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
 					{
 						path: 'data-predictions',
 						element: <DataPredictions />,
+					},
+					{
+						path: 'categories',
+						element: <Categories />,
 					}
 				]
 			}
