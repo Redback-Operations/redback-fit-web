@@ -35,7 +35,7 @@ const DashboardLanding: React.FC = () => {
 	return (
 		<main className={styles.mainContainerLanding}>
 			<div className={styles.topBar}>
-				<h1 className={styles.dashboardTitle}>Welcome Back Athlete!</h1>
+				<h1 className={styles.dashboardTitle}>Welcome Athlete!</h1>
 				<div className={styles.searchAndIcons}>
 					<div className={styles.searchContainer}>
 						<FaMagnifyingGlass className={styles.searchIcon} />
