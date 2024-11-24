@@ -16,7 +16,7 @@ const Sidebar: React.FC = () => {
 			<ul className={styles.sidebarList}>
 				<li className={styles.sidebarListItem}><NavLink to="/dashboard"><BsGrid1X2Fill /> Dashboard</NavLink></li>
 				<li className={styles.sidebarListItem}><NavLink to="/features"><BsFillArchiveFill /> Features</NavLink></li>
-				<li className={styles.sidebarListItem}><NavLink to="/categories"><BsFillGrid3X3GapFill /> Categories</NavLink></li>
+				<li className={styles.sidebarListItem}><NavLink to="/dashboard/categories"><BsFillGrid3X3GapFill /> Categories</NavLink></li>
 				<li className={styles.sidebarListItem}><NavLink to="/reports"><BsMenuButtonWideFill /> Reports</NavLink></li>
 				<li className={styles.sidebarListItem}><NavLink to='/dashboard/data-predictions'><BsTable /> Data & Predictions</NavLink></li>
 			</ul>
