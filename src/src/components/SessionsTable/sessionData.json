@@ -1,0 +1,59 @@
+[
+    {
+        "id": 1,
+        "coach": "Sarah Eastern",
+        "duration": "1 Hour",
+        "date": "2023/09/17",
+        "typeOfTraining": "Strength "
+    },
+    {
+        "id": 2,
+        "coach": "Sarah Eastern",
+        "duration": "1.5 Hours",
+        "date": "2023/10/17",
+        "typeOfTraining": "Cardio" 
+    },
+    {
+        "id": 3,
+        "coach": "Sarah Eastern",
+        "duration": "1 Hour",
+        "date": "2023/11/17",
+        "typeOfTraining": "Flexibility"
+    },
+    {
+        "id": 4,
+        "coach": "Sarah Eastern",
+        "duration": "2 Hours",
+        "date": "2023/12/17",
+        "typeOfTraining": "Team Practice"
+    },
+
+    {
+        "id": 5,
+        "coach": "Sarah Eastern",
+        "duration": "1 Hour",
+        "date": "2023/09/17",
+        "typeOfTraining": "Strength"
+    },
+    {
+        "id": 6,
+        "coach": "Sarah Eastern",
+        "duration": "1.5 Hours",
+        "date": "2023/10/17",
+        "typeOfTraining": "Cardio" 
+    },
+    {
+        "id": 7,
+        "coach": "Sarah Eastern",
+        "duration": "1 Hour",
+        "date": "2023/11/17",
+        "typeOfTraining": "Flexibility"
+    },
+    {
+        "id": 8,
+        "coach": "Sarah Eastern",
+        "duration": "2 Hours",
+        "date": "2023/12/17",
+        "typeOfTraining": "Team Practice"
+    }
+]
