@@ -20,7 +20,7 @@ Perhaps look into fixing / changing these names if you notice elements unintenti
 }
 
 .find-password {
-    color: #dddddd;
+    color: #ffffff;
     font-size: 12px;
     text-decoration: none;
     margin: 15px 0;
@@ -28,13 +28,13 @@ Perhaps look into fixing / changing these names if you notice elements unintenti
 }
 
 .find-password:hover {
-    color: #124e66;
+    color: #b3a7b7;
 }
 
 .form-button {
     border-radius: 0px;
-    border: 1px solid #124e66;
-    background-color: #124e66;
+    border: 1px solid #ffffff;
+    background-color: #000000;
     color: #ffffff;
     font-size: 12px;
     font-weight: bold;
@@ -59,7 +59,7 @@ Perhaps look into fixing / changing these names if you notice elements unintenti
 }
 
 .form {
-    background-color: #748d92;
+    background-color: #0e080e;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -178,7 +178,7 @@ input {
 
 .overlay {
     
-    background: linear-gradient(to right, #124e66, #124e66);
+    background: #e97462;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 0 0;

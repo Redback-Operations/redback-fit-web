@@ -11,31 +11,14 @@ const LoginPage: React.FC = () => {
 	const handleClickSignInButton = () => setRightPanelActive(false);
 
 	useEffect(() => {
-
 		const style = document.createElement('style');
 		style.innerHTML = `
-            @keyframes gradientAnimation {
-                0% {
-                    background-position: 0% 50%;
-                }
-                50% {
-                    background-position: 100% 50%;
-                }
-                100% {
-                    background-position: 0% 50%;
-                }
-            }
-
-            body {
-                animation: gradientAnimation 20s ease infinite;
-                background: linear-gradient(to right, #212A31, #2e3944);
-                background-size: 200% 200%;
-            }
-
-            }
-        `;
+			body {
+				background: #f8f9fa;
+			}
+		`;
 		document.head.appendChild(style);
-
+	
 		return () => {
 			document.head.removeChild(style);
 		};
