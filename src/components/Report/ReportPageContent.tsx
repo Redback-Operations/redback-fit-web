@@ -7,17 +7,6 @@ import { Card, CardContent, Typography, Grid, CircularProgress, Box } from '@mui
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FavoriteBorderRounded, MonitorHeartRounded, FitnessCenterRounded, StackedLineChartRounded, BoltRounded, StairsRounded, DirectionsWalkRounded, AirlineSeatFlatAngledRounded } from '@mui/icons-material';
 
-interface RecordType {
-	id: number;
-	heartRate: number;
-	zoneMin: number;
-	exerciseDays: number;
-	sleepDuration: string;
-	steps: number;
-	distance: string;
-	energyBurned: string;
-}
-
 // Mock data
 const mockData = {
 	heartRate: 102,
