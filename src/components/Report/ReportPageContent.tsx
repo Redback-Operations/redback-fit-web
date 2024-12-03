@@ -66,12 +66,9 @@ const records = [
 
 const DashboardLanding: React.FC = () => {
 	// State for selected data
-	const [selectedData, setSelectedData] = useState(records[0]);
+	const [] = useState(records[0]);
 
 	// Handle record selection
-	const handleRecordClick = (record: RecordType) => {
-		setSelectedData(record);
-	};
 
 	const theme = createTheme({
 		components: {

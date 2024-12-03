@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 class SignUp extends Component {
 	state = {
@@ -9,11 +9,11 @@ class SignUp extends Component {
 		messageStyle: {}, // Object to hold dynamic inline styles
 	};
 
-	handleChange = (e) => {
+	handleChange = (e: { target: { name: any; value: any; }; }) => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
 
-	handleSubmit = (e) => {
+	handleSubmit = (e: { preventDefault: () => void; }) => {
 		e.preventDefault();
 
 		const { fullName, email, password } = this.state;

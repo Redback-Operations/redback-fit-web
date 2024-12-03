@@ -4,9 +4,7 @@ import Logo from '../../assets/Redback_logo.png';
 import SignUp from '../../components/SignUp/SignUp.tsx';
 import Signin from '../../components/SignIn/SignIn.tsx';
 import Overlay from '../../components/SignInSlider/SignInSlider.tsx';
-import styles from '../../routes/HomePage/HomePage.module.css';
 import { Link } from 'react-router-dom';
-import { alignProperty } from '@mui/material/styles/cssUtils';
 
 const LoginPage: React.FC = () => {
 	const [rightPanelActive, setRightPanelActive] = useState<boolean>(false);

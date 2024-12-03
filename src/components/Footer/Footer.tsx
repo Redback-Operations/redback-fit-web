@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BsTwitter } from 'react-icons/bs';
 import { SiLinkedin } from 'react-icons/si';
 import { BsYoutube } from 'react-icons/bs';
