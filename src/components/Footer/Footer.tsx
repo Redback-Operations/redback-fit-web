@@ -3,6 +3,7 @@ import { BsTwitter } from 'react-icons/bs';
 import { SiLinkedin } from 'react-icons/si';
 import { BsYoutube } from 'react-icons/bs';
 import { FaFacebookF } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
 import styles from '../../routes/HomePage/HomePage.module.css';
 
 const Footer = () => {
@@ -20,11 +21,15 @@ const Footer = () => {
 	return (
 		<div className={styles['footer-wrapper']}>
 			<div className={styles['footer-section-one']}>
-				<div className={styles['footer-logo-container']}>
-					<p className={styles['primary-subheading']}>ReflexionPro</p>
-				</div>
+
 				<div className={styles['footer-icons']}>
-					<BsTwitter />
+					<a 
+						href="https://x.com/Deakin" 
+						target="_blank" 
+						rel="noopener noreferrer"
+					>
+						<BsTwitter />
+					</a>
 					<a 
 						href="https://www.linkedin.com/company/redback-ops/" 
 						target="_blank" 
@@ -33,13 +38,26 @@ const Footer = () => {
 						<SiLinkedin />
 					</a>
 					<a 
-						href="https://www.youtube.com/watch?v=KPmSsFT3p2w" 
+						href="https://www.youtube.com/@DeakinUniversityAustralia" 
 						target="_blank" 
 						rel="noopener noreferrer"
 					>
 						<BsYoutube />
 					</a>
-					<FaFacebookF />
+					<a 
+        				href="https://www.instagram.com/redbackoperationsdeakin/" 
+        				target="_blank" 
+        				rel="noopener noreferrer"
+    				>
+        				<FaInstagram />
+    				</a>
+					<a 
+        				href="https://www.facebook.com/DeakinUniversity" 
+        				target="_blank" 
+        				rel="noopener noreferrer"
+    				>
+        				<FaFacebookF />
+    				</a>				
 				</div>
 			</div>
 			<div className={styles['footer-section-two']}>
