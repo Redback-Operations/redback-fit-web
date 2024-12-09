@@ -9,66 +9,26 @@ import { FavoriteBorderRounded, MonitorHeartRounded, FitnessCenterRounded, Stack
 
 interface RecordType {
 	id: number;
+	coach: string;
+	duration: string;
+	date: string;
+	typeOfTraining: string;
 	heartRate: number;
-	zoneMin: number;
+	zoneMinutes: number;
 	exerciseDays: number;
+	distance: number;
+	calories: number;
+	floors: number;
 	sleepDuration: string;
 	steps: number;
-	distance: string;
-	energyBurned: string;
+	activeZoneMinutes: number;
 }
 
-// Mock data
-const mockData = {
-	heartRate: 102,
-	zoneMinutes: 122,
-	exerciseDays: 2,
-	distance: 1.91,
-	calories: 1653,
-	floors: 0,
-	sleepDuration: '6h 58m',
-	steps: 4770,
-	activeZoneMinutes: 122,
-};
-
-const records = [
-	{
-		id: 1,
-		heartRate: 79,
-		zoneMin: 122,
-		exerciseDays: 2,
-		sleepDuration: '6h 58m',
-		steps: 4770,
-		distance: '1.91 mi',
-		energyBurned: '1653 cal',
-	},
-	{
-		id: 2,
-		heartRate: 85,
-		zoneMin: 140,
-		exerciseDays: 3,
-		sleepDuration: '7h 10m',
-		steps: 5250,
-		distance: '2.5 mi',
-		energyBurned: '1800 cal',
-	},
-	{
-		id: 3,
-		heartRate: 70,
-		zoneMin: 100,
-		exerciseDays: 1,
-		sleepDuration: '5h 45m',
-		steps: 4000,
-		distance: '1.2 mi',
-		energyBurned: '1500 cal',
-	},
-];
-
 const DashboardLanding: React.FC = () => {
-	// State for selected data
-	const [selectedData, setSelectedData] = useState(records[0]);
+	// State for selected session data
+	const [selectedData, setSelectedData] = useState<RecordType>(data[0]);
 
-	// Handle record selection
+	// Handle record selection from the table
 	const handleRecordClick = (record: RecordType) => {
 		setSelectedData(record);
 	};
@@ -122,16 +82,16 @@ const DashboardLanding: React.FC = () => {
 										<Box sx={{ position: 'relative', display: 'inline-flex' }}>
 											<CircularProgress
 												variant="determinate"
-												value={(mockData.heartRate / 220) * 100}
+												value={(selectedData.heartRate / 220) * 100}
 												size={100}
 												thickness={4}
 												sx={{
 													color:
-														mockData.heartRate >= 150
+														selectedData.heartRate >= 150
 															? 'red'
-															: mockData.heartRate >= 100
+															: selectedData.heartRate >= 100
 																? 'yellow'
-																: mockData.heartRate >= 60
+																: selectedData.heartRate >= 60
 																	? 'green'
 																	: 'blue',
 													margin: '12px'
@@ -149,16 +109,16 @@ const DashboardLanding: React.FC = () => {
 												}}
 											>
 												<FavoriteBorderRounded sx={{
-													color: mockData.heartRate >= 150 ? 'red'
-														: mockData.heartRate >= 100 ? 'yellow'
-															: mockData.heartRate >= 60 ? 'green'
+													color: selectedData.heartRate >= 150 ? 'red'
+														: selectedData.heartRate >= 100 ? 'yellow'
+															: selectedData.heartRate >= 60 ? 'green'
 																: 'blue',
 													fontSize: 30
 												}} />
 											</Box>
 										</Box>
 										<Typography variant="h4" sx={{ marginTop: '10px' }}>
-											{mockData.heartRate} bpm
+											{selectedData.heartRate} bpm
 										</Typography>
 									</CardContent>
 								</Card>
@@ -171,7 +131,7 @@ const DashboardLanding: React.FC = () => {
 										<Box sx={{ position: 'relative', display: 'inline-flex' }}>
 											<CircularProgress
 												variant="determinate"
-												value={(mockData.heartRate / 150) * 100}
+												value={(selectedData.heartRate / 150) * 100}
 												size={100}
 												thickness={4}
 												sx={{
@@ -197,7 +157,7 @@ const DashboardLanding: React.FC = () => {
 											</Box>
 										</Box>
 										<Typography variant="h4" sx={{ marginTop: '10px' }}>
-											{mockData.zoneMinutes} mins
+											{selectedData.zoneMinutes} mins
 										</Typography>
 									</CardContent>
 								</Card>
@@ -212,7 +172,7 @@ const DashboardLanding: React.FC = () => {
 										<FitnessCenterRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 										<Box>
 											<Typography variant="h5">Exercise Days</Typography>
-											<Typography variant="body1">{mockData.exerciseDays} of 5 this week</Typography>
+											<Typography variant="body1">{selectedData.exerciseDays} of 5 this week</Typography>
 										</Box>
 									</Box>
 								</CardContent>
@@ -228,7 +188,7 @@ const DashboardLanding: React.FC = () => {
 											<StackedLineChartRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 											<Box>
 												<Typography variant="h5">Distance</Typography>
-												<Typography variant="h4">{mockData.distance} mi</Typography>
+												<Typography variant="h4">{selectedData.distance} mi</Typography>
 											</Box>
 										</Box>
 									</CardContent>
@@ -242,7 +202,7 @@ const DashboardLanding: React.FC = () => {
 											<BoltRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 											<Box>
 												<Typography variant="h5">Calories</Typography>
-												<Typography variant="h4">{mockData.calories}</Typography>
+												<Typography variant="h4">{selectedData.calories}</Typography>
 											</Box>
 										</Box>
 									</CardContent>
@@ -258,7 +218,7 @@ const DashboardLanding: React.FC = () => {
 											<DirectionsWalkRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 											<Box>
 												<Typography variant="h5">Steps</Typography>
-												<Typography variant="h4">{mockData.steps}</Typography>
+												<Typography variant="h4">{selectedData.steps}</Typography>
 											</Box>
 										</Box>
 									</CardContent>
@@ -272,7 +232,7 @@ const DashboardLanding: React.FC = () => {
 											<StairsRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 											<Box>
 												<Typography variant="h5">Floors</Typography>
-												<Typography variant="h4">{mockData.floors}</Typography>
+												<Typography variant="h4">{selectedData.floors}</Typography>
 											</Box>
 										</Box>
 									</CardContent>
@@ -288,7 +248,7 @@ const DashboardLanding: React.FC = () => {
 										<AirlineSeatFlatAngledRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 										<Box>
 											<Typography variant="h5">Sleep Duration</Typography>
-											<Typography variant="h4">{mockData.sleepDuration}</Typography>
+											<Typography variant="h4">{selectedData.sleepDuration}</Typography>
 										</Box>
 									</Box>
 								</CardContent>
@@ -298,8 +258,7 @@ const DashboardLanding: React.FC = () => {
 						<div className={styles.heartRateCalSection}>
 							<div className={styles.SessionsProfileWindow}>
 								<h1>Your Sessions</h1>
-								<SessionTable data={data}>
-								</SessionTable>
+								<SessionTable data={data} onRowClick={handleRecordClick} />
 							</div>
 						</div>
 					</Box>
