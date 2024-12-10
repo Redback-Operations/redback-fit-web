@@ -32,7 +32,7 @@
 									},
 									{
 										"name": "/^${{ParentName}}(\\.(test|style|stories))?$/",
-										"extension": ["tsx", "ts"]
+										"extension": ["tsx", "ts","css","json"]
 									}
 								]
                             }
@@ -49,8 +49,8 @@
 										"extension": ["tsx"]
 									},
 									{
-										"name": "/^${{ParentName}}(\\.(test|style|stories))?$/",
-										"extension": ["tsx", "ts"]
+										"name": "/^${{ParentName}}(\\.(test|style|stories|module))?$/",
+										"extension": ["tsx", "ts","css"]
 									}
 								]
                             }

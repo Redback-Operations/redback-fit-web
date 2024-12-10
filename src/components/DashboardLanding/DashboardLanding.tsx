@@ -6,13 +6,21 @@ import { HiBell } from 'react-icons/hi';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import styles from '../../routes/Dashboard/Dashboard.module.css';
 import SessionTable from '../SessionsTable/SessionsTable';
-import data from '../SessionsTable/sessionData.json';
+import data from '../SessionsTable/SessionsTable.json';
 import { Gauge } from '@mui/x-charts-pro';
 import Stack from '@mui/material/Stack';
 import { LineChart } from '@mui/x-charts/LineChart';
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar';
 
-
+// Sample data for Heart Rate Graph
+const heartRateData = [
+	{ time: 1, heartRate: 60 },
+	{ time: 2, heartRate: 65 },
+	{ time: 3, heartRate: 70 },
+	{ time: 4, heartRate: 75 },
+	{ time: 5, heartRate: 80 },
+	{ time: 6, heartRate: 85 },
+];
 
 const DashboardLanding: React.FC = () => {
 
@@ -35,13 +43,33 @@ const DashboardLanding: React.FC = () => {
 			<div className={styles.heartRateCalSection}>
 				<div className={styles.heartRateWindow}>
 					<h3 className={styles.componentText}>Heart Rate</h3>
-					<p className={styles.componentText}>Tracking Cardiovascular Activity</p>
-					<LineChart className={styles.lineChart}
-						xAxis={[{ data: [1, 2, 3, 4, 5, 6] }]}
-						series={[{
-							data: [0, 1, 3, 5.5, 7, 10]
-						}]}
-					/>
+					<div
+						style={{ position: 'relative', width: '100%', height: '300px' }}
+						onClick={(event) => {
+							const container = event.currentTarget;
+							const rect = container.getBoundingClientRect();
+							const x = event.clientX - rect.left; // X position relative to the chart
+							//const y = event.clientY - rect.top; // Y position relative to the chart
+
+							// Example interaction: Calculate approximate clicked point
+							const clickedIndex = Math.floor((x / rect.width) * heartRateData.length);
+							if (clickedIndex >= 0 && clickedIndex < heartRateData.length) {
+								const pointData = heartRateData[clickedIndex];
+								alert(`Time(s) ${pointData.time}: ${pointData.heartRate} bpm`);
+							}
+						}}
+					>
+						<LineChart
+							xAxis={[{ data: heartRateData.map((entry) => entry.time), label: 'Time (s)' }]}
+							series={[
+								{
+									data: heartRateData.map((entry) => entry.heartRate),
+									label: 'Heart Rate (bpm)',
+								},
+							]}
+						/>
+					</div>
+
 				</div>
 				<div className={styles.sideBySideComponents}>
 					<div className={styles.SessionsProfileWindow}>

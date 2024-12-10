@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import styles from './HomePage.module.css';
 import Home from '../../components/Home/Home.tsx';
 import About from '../../components/About/About.tsx';

@@ -4,15 +4,16 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './routes/Root/Root.tsx';
 import LoginPage from './routes/LoginPage/LoginPage.tsx';
 import Dashboard from './routes/Dashboard/Dashboard.tsx';
-import ReportPage from './routes/Report/ReportPage.tsx';
+import ReportPage from './routes/ReportPage/ReportPage.tsx';
 import HomePage from './routes/HomePage/HomePage.tsx';
 import DataPredictions from './components/DashboardDataPredictions/DashboardDataPredictions.tsx';
 import DashboardLanding from './components/DashboardLanding/DashboardLanding.tsx';
 import ProfilePage from './routes/ProfilePage/ProfilePage';
 import Categories from './components/Categories/Categories.tsx';
-import ReportPageContent from './components/Report/ReportPageContent.tsx';
+import ReportPageContent from './components/Report/Report.tsx';
 import Features from './components/Features/Features.tsx';
 import SettingsPage from './components/Settings/Settings.tsx';
+import Goals from './components/Goals/Goals.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
 					{
 						path: 'features',
 						element: <Features />,
+					},
+					{
+						path: 'goals',
+						element: <Goals />,
 					},
 					{
 						path: 'settings',

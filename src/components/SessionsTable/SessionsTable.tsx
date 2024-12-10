@@ -1,5 +1,5 @@
 import { MouseEventHandler, useCallback, useState } from 'react';
-import data from '../SessionsTable/sessionData.json';
+import data from '../SessionsTable/SessionsTable.json';
 
 type Data = typeof data;
 type SortKeys = keyof Data[0];

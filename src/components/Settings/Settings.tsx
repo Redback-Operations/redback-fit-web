@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import './Settings.css';
 
 interface Settings {
-  theme: string;
-  notifications: {
-    email: boolean;
-    sms: boolean;
-    app: boolean;
-  };
-  password: string;
-  twoFactorAuth: boolean;
+	theme: string;
+	notifications: {
+		email: boolean;
+		sms: boolean;
+		app: boolean;
+	};
+	password: string;
+	twoFactorAuth: boolean;
 }
 
 const SettingsPage: React.FC = () => {
@@ -33,6 +33,10 @@ const SettingsPage: React.FC = () => {
 		setSettings({ ...settings, [name]: !settings[name as keyof Settings] });
 	};
 
+	const handleThemeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		setSettings({ ...settings, theme: e.target.value });
+	};
+
 	const handleNotificationToggle = (type: string) => {
 		setSettings({
 			...settings,
@@ -50,67 +54,51 @@ const SettingsPage: React.FC = () => {
 	};
 
 	return (
-		<div className="settings-container">
+		<div className={`settings-container ${settings.theme}`}>
 			<h1 className="settings-title">Settings</h1>
-			<div className="overview-section">
-				<h2>Overview</h2>
-				<p>Current Theme: <strong>{settings.theme}</strong></p>
-				<p>
-          Notifications:{' '}
-					{Object.values(settings.notifications).some((v) => v)
-						? 'Enabled'
-						: 'Disabled'}
-				</p>
-				<p>Two-Factor Auth: {settings.twoFactorAuth ? 'On' : 'Off'}</p>
-			</div>
 			<form onSubmit={handleSubmit} className="settings-form">
-				{/* Preferences Section */}
 				<div className="settings-section">
 					<h2>Preferences</h2>
 					<div className="form-group">
-						<label>Theme:</label>
+						<label htmlFor="theme">Theme:</label>
 						<select
+							id="theme"
 							name="theme"
 							value={settings.theme}
-							onChange={(e) =>
-								setSettings({ ...settings, theme: e.target.value })
-							}
+							onChange={handleThemeChange}
 						>
 							<option value="light">Light</option>
 							<option value="dark">Dark</option>
-							<option value="system">System Default</option>
 						</select>
-						<div className={`theme-preview ${settings.theme}`}>
-							<p>Preview of {settings.theme} theme</p>
-						</div>
 					</div>
 				</div>
 
-				{/* Security Section */}
+
 				<div className="settings-section">
-					<h2>Security Settings</h2>
+					<h2>Security</h2>
 					<div className="form-group">
-						<label>Change Password:</label>
+						<label htmlFor="password">Change Password:</label>
 						<input
 							type="password"
+							id="password"
 							name="password"
+							placeholder="Enter new password"
 							value={settings.password}
 							onChange={handleInputChange}
 						/>
 					</div>
-					<div className="form-group">
-						<label>
-            Enable Two-Factor Authentication
-							<input
-								type="checkbox"
-								checked={settings.twoFactorAuth}
-								onChange={() => handleToggle('twoFactorAuth')}
-							/>
-						</label>
+					<div className="form-group toggle-group">
+						<label htmlFor="twoFactorAuth">Enable Two-Factor Authentication</label>
+						<input
+							type="checkbox"
+							id="twoFactorAuth"
+							checked={settings.twoFactorAuth}
+							onChange={() => handleToggle('twoFactorAuth')}
+						/>
 					</div>
 				</div>
 
-				{/* Notifications Section */}
+
 				<div className="settings-section">
 					<h2>Notifications</h2>
 					<div className="form-group">
@@ -120,7 +108,7 @@ const SettingsPage: React.FC = () => {
 								checked={settings.notifications.email}
 								onChange={() => handleNotificationToggle('email')}
 							/>
-              Email Notifications
+							Email
 						</label>
 					</div>
 					<div className="form-group">
@@ -130,7 +118,7 @@ const SettingsPage: React.FC = () => {
 								checked={settings.notifications.sms}
 								onChange={() => handleNotificationToggle('sms')}
 							/>
-              SMS Notifications
+							SMS
 						</label>
 					</div>
 					<div className="form-group">
@@ -140,23 +128,23 @@ const SettingsPage: React.FC = () => {
 								checked={settings.notifications.app}
 								onChange={() => handleNotificationToggle('app')}
 							/>
-              App Notifications
+							App Notifications
 						</label>
 					</div>
 				</div>
 
-				{/* Account Activity */}
+
 				<div className="settings-section">
 					<h2>Recent Activity</h2>
-					<ul>
-						<li>Login from new device: 2 hours ago</li>
+					<ul className="activity-list">
+						<li>Login from new device: 30 mins ago</li>
 						<li>Password changed: 3 days ago</li>
-						<li>Two-Factor Auth enabled: 1 week ago</li>
+						<li>Two-Factor Authentication enabled: 1 week ago</li>
 					</ul>
 				</div>
 
 				<div className="form-actions">
-					<button type="submit">Save Settings</button>
+					<button type="submit" className="save-button">Save Settings</button>
 				</div>
 			</form>
 		</div>
@@ -164,6 +152,10 @@ const SettingsPage: React.FC = () => {
 };
 
 export default SettingsPage;
+
+
+
+
 
 
 

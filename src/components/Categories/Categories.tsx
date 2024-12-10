@@ -75,16 +75,16 @@ const Badge: React.FC<{ name: string; icon?: React.ReactNode; tooltip?: string }
 
 // Define the badge type
 interface BadgeType {
-  name: string;
-  icon?: React.ReactNode;
-  tooltip?: string;
+	name: string;
+	icon?: React.ReactNode;
+	tooltip?: string;
 }
 
 // Define the category type
 interface Category {
-  name: string;
-  description: string;
-  badges: BadgeType[];
+	name: string;
+	description: string;
+	badges: BadgeType[];
 }
 
 // Categories data
@@ -203,7 +203,7 @@ const Categories: React.FC = () => {
 					fontSize: '20px', // Adjust the text size (e.g., 20px, 1.5rem, etc.)
 					fontFamily: 'Arial, sans-serif', // Choose a font family
 				}}>
-          Welcome to the Categories Page. Click to hear about our features and badges.
+					Explore Our Categories! Click to uncover features and badges waiting for you.
 				</p>
 			</div>
 
@@ -244,9 +244,9 @@ const Categories: React.FC = () => {
 							{category.badges.length > 3 && (
 								<>
 									{expandedCategory === category.name &&
-                    category.badges.slice(3).map((badge, badgeIndex) => (
-                    	<Badge key={`expanded-${badgeIndex}`} name={badge.name} icon={badge.icon} tooltip={badge.tooltip} />
-                    ))}
+										category.badges.slice(3).map((badge, badgeIndex) => (
+											<Badge key={`expanded-${badgeIndex}`} name={badge.name} icon={badge.icon} tooltip={badge.tooltip} />
+										))}
 									<div>
 										<button
 											onClick={() => toggleBadges(category.name)}

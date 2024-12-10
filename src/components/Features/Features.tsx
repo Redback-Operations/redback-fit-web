@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import FeaturesAudio from '../../assets/Audio_FeaturesPage.mp3';
 
 // Define a type for features
 interface Feature {
-  title: string;
-  description: string;
-  icon: string; // Path to an icon image or icon component
+	title: string;
+	description: string;
+	icon: string; // Path to an icon image or icon component
 }
 
 const features: Feature[] = [
@@ -37,110 +38,146 @@ const features: Feature[] = [
 ];
 
 const Features: React.FC = () => {
+
+	const [hasPlayedAudio, setHasPlayedAudio] = useState(false);
+	const [isPlaying, setIsPlaying] = useState(false);
+
+	const playAudio = () => {
+		if (!hasPlayedAudio && !isPlaying) {
+			const audio = new Audio(FeaturesAudio);
+			setIsPlaying(true);// Use imported path
+			audio.play();
+			audio.onended = () => setIsPlaying(false);
+			setHasPlayedAudio(true);
+		}
+	};
+
 	return (
-		<div style={{ padding: '60px 20px' }}>
-			<h1 style={{ textAlign: 'center', fontSize: '2rem', color: 'black', marginBottom: '40px', marginLeft: '90px'  }}>
-      Reach New Heights with Cutting-Edge Features
-			</h1>
+		<div>
+			{/* Top Bar */}
+			<div
+				style={{
+					padding: '10px',
+					backgroundColor: '#e97462',
+					color: 'white',
+					textAlign: 'center',
+					cursor: 'pointer',
+				}}
+				onClick={playAudio}
+			>
+				<p style={{
+					margin: 0,
+					fontSize: '20px', // Adjust the text size (e.g., 20px, 1.5rem, etc.)
+					fontFamily: 'Arial, sans-serif', // Choose a font family
+				}}>
+					Discover Our Features! Click to explore what we offer
+				</p>
+			</div>
 
-			<p style={{ textAlign: 'center', fontSize: '1rem', color: 'black', maxWidth: '700px', margin: '0 auto 60px' }}>
-        Explore the powerful features that will elevate your fitness journey. From real-time tracking to personalized recovery, we’ve built a platform that adapts to your needs.
-			</p>
+			<div style={{ padding: '60px 20px' }}>
+				<h1 style={{ textAlign: 'center', fontSize: '2rem', color: 'black', marginBottom: '40px', marginLeft: '90px' }}>
+					Reach New Heights with Cutting-Edge Features
+				</h1>
 
-			<div>
-				{features.map((feature, index) => (
+				<p style={{ textAlign: 'center', fontSize: '1rem', color: 'black', maxWidth: '700px', margin: '0 auto 60px' }}>
+					Explore the powerful features that will elevate your fitness journey. From real-time tracking to personalized recovery, we’ve built a platform that adapts to your needs.
+				</p>
+
+				<div>
+					{features.map((feature, index) => (
+						<div
+							key={feature.title}
+							style={{
+								display: 'flex',
+								alignItems: 'center',
+								padding: '60px 90px',
+								backgroundColor: index % 2 === 0 ? '#e97462' : '#e97462',
+								marginBottom: '40px',
+								marginLeft: '360px',
+								marginRight: '250px',
+								borderRadius: '15px',
+								boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+								transition: 'background-color 0.3s ease-in-out',
+								position: 'relative',
+							}}
+						>
+							<div style={{ flex: 1, textAlign: 'center' }}>
+								<img
+									src={feature.icon}
+									alt={`${feature.title} icon`}
+									style={{
+										width: '200px',
+										height: '120px',
+										marginBottom: '30px',
+										objectFit: 'contain',
+									}}
+								/>
+							</div>
+
+							<div style={{ flex: 2 }}>
+								<h2
+									style={{
+										fontSize: '1rem',
+										color: 'black',
+										marginBottom: '15px',
+										textTransform: 'uppercase',
+										fontWeight: 'bold',
+										letterSpacing: '1.5px',
+									}}
+								>
+									{feature.title}
+								</h2>
+								<p style={{ fontSize: '1rem', color: '#black', lineHeight: '1.8' }}>
+									{feature.description}
+								</p>
+							</div>
+						</div>
+					))}
+				</div>
+
+				<div style={{ textAlign: 'center', marginTop: '60px', marginLeft: '400px', marginRight: '250px' }}>
 					<div
-						key={feature.title}
 						style={{
-							display: 'flex',
-							alignItems: 'center',
-							padding: '60px 90px',
-							backgroundColor: index % 2 === 0 ? '#e97462' : '#e97462',
-							marginBottom: '40px',
-							marginLeft: '360px',
-							marginRight: '250px',
-							borderRadius: '15px',
-							boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-							transition: 'background-color 0.3s ease-in-out',
+							backgroundColor: '#e97462',
+							color: '#ffffff',
+							padding: '40px',
+							borderRadius: '10px',
+							boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+							maxWidth: '80%',
+							margin: '0 auto',
 							position: 'relative',
 						}}
 					>
-						<div style={{ flex: 1, textAlign: 'center' }}>
-							<img
-								src={feature.icon}
-								alt={`${feature.title} icon`}
-								style={{
-									width: '200px',
-									height: '120px',
-									marginBottom: '30px',
-									objectFit: 'contain',
-								}}
-							/>
-						</div>
-
-						<div style={{ flex: 2 }}>
-							<h2
-								style={{
-									fontSize: '1rem',
-									color: 'black',
-									marginBottom: '15px',
-									textTransform: 'uppercase',
-									fontWeight: 'bold',
-									letterSpacing: '1.5px',
-								}}
-							>
-								{feature.title}
-							</h2>
-							<p style={{ fontSize: '1rem', color: '#black', lineHeight: '1.8' }}>
-								{feature.description}
-							</p>
-						</div>
+						<blockquote style={{ fontSize: '1rem', fontStyle: 'italic', marginBottom: '20px' }}>
+							“Take the first step in faith. You don’t have to see the whole staircase, just take the first step.”<br />
+							<span style={{ fontSize: '0.8rem', fontWeight: 'bold', marginTop: '10px', display: 'block' }}>
+								– Martin Luther King Jr.
+							</span>
+						</blockquote>
 					</div>
-				))}
-			</div>
 
-			<div style={{ textAlign: 'center', marginTop: '60px', marginLeft: '400px' , marginRight: '250px' }}>
-				<div
-					style={{
-						backgroundColor: '#e97462',
-						color: '#ffffff',
-						padding: '40px',
-						borderRadius: '10px',
-						boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-						maxWidth: '80%',
-						margin: '0 auto',
-						position: 'relative',
-					}}
-				>
-					<blockquote style={{ fontSize: '1rem', fontStyle: 'italic', marginBottom: '20px' }}>
-            “Take the first step in faith. You don’t have to see the whole staircase, just take the first step.”<br />
-						<span style={{ fontSize: '0.8rem', fontWeight: 'bold', marginTop: '10px', display: 'block' }}>
-              – Martin Luther King Jr.
-						</span>
-					</blockquote>
+					<p style={{ fontSize: '1rem', color: 'black', marginTop: '40px', marginBottom: '30px' }}>
+						Ready to take your fitness to the next level ? Sign up today and unlock these incredible features.
+					</p>
+					<Link to="/login" style={{ textDecoration: 'none' }}>
+						<button
+							style={{
+								padding: '14px 35px',
+								fontSize: '0.8rem',
+								backgroundColor: '#e97462',
+								color: '#ffffff',
+								border: 'none',
+								borderRadius: '30px',
+								cursor: 'pointer',
+								transition: 'background-color 0.3s ease-in-out',
+							}}
+							onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#e97462')}
+							onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#e97462')}
+						>
+							Join Now and Transform Your Fitness
+						</button>
+					</Link>
 				</div>
-
-				<p style={{ fontSize: '1rem', color: 'black', marginTop: '40px', marginBottom: '30px' }}>
-          Ready to take your fitness to the next level ? Sign up today and unlock these incredible features.
-				</p>
-				<Link to="/login" style={{ textDecoration: 'none' }}>
-					<button
-						style={{
-							padding: '14px 35px',
-							fontSize: '0.8rem',
-							backgroundColor: '#e97462',							
-							color: '#ffffff',
-							border: 'none',
-							borderRadius: '30px',
-							cursor: 'pointer',
-							transition: 'background-color 0.3s ease-in-out',
-						}}
-						onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#e97462')}
-						onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#e97462')}
-					>
-          Join Now and Transform Your Fitness
-					</button>
-				</Link>
 			</div>
 		</div>
 	);

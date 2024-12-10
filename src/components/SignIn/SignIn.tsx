@@ -47,7 +47,7 @@ class Signin extends Component {
 	};
 
 	render() {
-		const { message, messageStyle } = this.state;
+		const { messageStyle } = this.state;
 		return (
 			<div className="form-container sign-in-container">
 				<form className="form" onSubmit={this.handleSubmit}>
