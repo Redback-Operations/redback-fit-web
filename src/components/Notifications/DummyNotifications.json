@@ -1,0 +1,146 @@
+[
+    {
+        "id": 1,
+        "message": "Your heart rate exceeded 150 bpm during your last session.",
+        "status": "unread",
+        "timestamp": "2025-04-06 10:00 AM"
+    },
+    {
+        "id": 2,
+        "message": "You achieved your weekly exercise goal!",
+        "status": "read",
+        "timestamp": "2025-04-05 08:30 PM"
+    },
+    {
+        "id": 3,
+        "message": "You burned 500 calories in your last workout.",
+        "status": "unread",
+        "timestamp": "2025-04-05 06:15 PM"
+    },
+    {
+        "id": 4,
+        "message": "You walked 10,000 steps yesterday. Great job!",
+        "status": "read",
+        "timestamp": "2025-04-04 09:00 PM"
+    },
+    {
+        "id": 5,
+        "message": "Your sleep duration was 7 hours last night.",
+        "status": "unread",
+        "timestamp": "2025-04-04 07:30 AM"
+    },
+    {
+        "id": 6,
+        "message": "You have a new workout plan available.",
+        "status": "read",
+        "timestamp": "2025-04-03 05:00 PM"
+    },
+    {
+        "id": 7,
+        "message": "You completed your monthly fitness challenge!",
+        "status": "unread",
+        "timestamp": "2025-04-02 08:00 AM"
+    },
+    {
+        "id": 8,
+        "message": "Your coach has sent you a new message.",
+        "status": "read",
+        "timestamp": "2025-04-01 03:00 PM"
+    },
+    {
+        "id": 9,
+        "message": "You have a new friend request from John Doe.",
+        "status": "unread",
+        "timestamp": "2025-03-31 12:00 PM"
+    },
+    {
+        "id": 10,
+        "message": "Your workout session is scheduled for tomorrow at 6 PM.",
+        "status": "read",
+        "timestamp": "2025-03-30 10:00 AM"
+    },
+    {
+        "id": 11,
+        "message": "You have a new friend request from Jane Smith.",
+        "status": "unread",
+        "timestamp": "2025-04-01 11:00 AM"
+    },
+    {
+        "id": 12,
+        "message": "You have a new message from your coach.",
+        "status": "unread",
+        "timestamp": "2025-03-30 08:00 PM"
+    },
+    {
+        "id": 13,
+        "message": "You have a new workout plan available.",
+        "status": "read",
+        "timestamp": "2025-03-29 07:00 PM"
+    },
+    {
+        "id": 14,
+        "message": "You achieved your weekly exercise goal!",
+        "status": "unread",
+        "timestamp": "2025-03-28 06:00 PM"
+    },
+    {
+        "id": 15,
+        "message": "You burned 600 calories in your last workout.",
+        "status": "read",
+        "timestamp": "2025-03-27 05:00 PM"
+    },
+    {
+        "id": 16,
+        "message": "You walked 12,000 steps yesterday. Great job!",
+        "status": "unread",
+        "timestamp": "2025-03-26 04:00 PM"
+    },
+    {
+        "id": 17,
+        "message": "Your sleep duration was 8 hours last night.",
+        "status": "read",
+        "timestamp": "2025-03-25 03:00 PM"
+    },
+    {
+        "id": 18,
+        "message": "You have a new workout plan available.",
+        "status": "unread",
+        "timestamp": "2025-03-24 02:00 PM"
+    },
+    {
+        "id": 19,
+        "message": "You completed your monthly fitness challenge!",
+        "status": "read",
+        "timestamp": "2025-03-23 01:00 PM"
+    },
+    {
+        "id": 20,
+        "message": "Your coach has sent you a new message.",
+        "status": "unread",
+        "timestamp": "2025-03-22 12:00 PM"
+    },
+    {
+        "id": 21,
+        "message": "You have a new friend request from Alice Johnson.",
+        "status": "read",
+        "timestamp": "2025-03-21 11:00 AM"
+    },
+    {
+        "id": 22,
+        "message": "Your workout session is scheduled for tomorrow at 8 PM.",
+        "status": "unread",
+        "timestamp": "2025-03-20 10:00 AM"
+    },
+    {
+        "id": 23,
+        "message": "You have a new message from your coach.",
+        "status": "read",
+        "timestamp": "2025-03-19 09:00 AM"
+    },
+    {
+        "id": 24,
+        "message": "You achieved your weekly exercise goal!",
+        "status": "unread",
+        "timestamp": "2025-03-18 08:00 AM"
+    }
+]
