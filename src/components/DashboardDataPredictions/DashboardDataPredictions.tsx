@@ -3,6 +3,7 @@ import { useDropzone } from 'react-dropzone';
 import * as XLSX from 'xlsx';
 import styles from '../../routes/Dashboard/Dashboard.module.css';
 import { FaFileAlt } from 'react-icons/fa';
+import { useUserSettings } from "../../context/UserSettingsContext.tsx";
 
 // Please note this is simply a testing page.
 
@@ -18,6 +19,8 @@ const DashboardDataPredictions: React.FC = () => {
 	const [date, setDate] = useState<string>('2022-01-01');
 	const [numDays, setNumDays] = useState<number>(5);
 	const [testedFTP, setTestedFTP] = useState<number>(0);
+	const { settings } = useUserSettings();
+
 
 	// Handle file drop
 	const onDrop = useCallback((acceptedFiles: File[]) => {
@@ -90,7 +93,37 @@ const DashboardDataPredictions: React.FC = () => {
 					{data.map((row, index) => (
 						<tr key={index}>
 							{Object.keys(row).map((cell, idx) => (
-								<td key={idx}>{String(row[cell])}</td> // Ensure values are rendered as strings
+								<td key={idx}>
+								{(() => {
+								  const value = row[cell];
+							  
+								  if (typeof value === "number") {
+									const lowerCell = cell.toLowerCase();
+							  
+									// Convert distance (assuming the column name includes "distance")
+									if (lowerCell.includes("distance")) {
+									  return settings.distanceUnit === "mi"
+										? `${(value * 0.621371).toFixed(2)} mi`
+										: `${value} km`;
+									}
+							  
+									// Convert time (assuming the column name includes "duration" or "time")
+									if (lowerCell.includes("duration") || lowerCell.includes("time")) {
+									  if (settings.timeUnit === "hr:min") {
+										const hours = Math.floor(value / 60);
+										const minutes = Math.round(value % 60);
+										return `${hours}h ${minutes}m`;
+									  } else {
+										return `${value} min`;
+									  }
+									}
+								  }
+							  
+								  // Default (no conversion)
+								  return String(value);
+								})()}
+							  </td>
+							  
 							))}
 						</tr>
 					))}
