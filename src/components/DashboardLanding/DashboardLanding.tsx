@@ -3,6 +3,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { HiBell } from 'react-icons/hi';
+import { IconButton } from '@mui/material';
+import { NotificationsRounded } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import styles from '../../routes/Dashboard/Dashboard.module.css';
 import SessionTable from '../SessionsTable/SessionsTable';
@@ -34,7 +37,14 @@ const DashboardLanding: React.FC = () => {
 						<FaMagnifyingGlass className={styles.searchIcon} />
 						<input type="search" className={styles.searchInput} placeholder="Search" />
 					</div>
-					<HiBell className={styles.bellIcon} />
+					<Link to="/notifications" className={styles.link}>
+						<IconButton>
+							<NotificationsRounded sx={{
+								// color: unreadNotifications.length > 0 ? 'red' : 'black',
+								fontSize: 36
+							}} />
+						</IconButton>
+					</Link>
 					{/*<div className={styles.profileIcon} style={{ backgroundImage: `url(${ProfilePic})` }}></div>  */}
 					{/*<NotificationBell/>*/}
 					<ProfileAvatar />
@@ -81,7 +91,7 @@ const DashboardLanding: React.FC = () => {
 						<div className={styles.calendarWindow}>
 							<LocalizationProvider dateAdapter={AdapterDayjs}>
 								<DateCalendar />
-							</LocalizationProvider>	
+							</LocalizationProvider>
 						</div>
 						<div className={styles.VO2Window}>
 							<h3 className={styles.componentTextVO2}>V02 Max</h3>
@@ -92,7 +102,7 @@ const DashboardLanding: React.FC = () => {
 						{/* <div className={styles.radarChart}>
 					<RadarChart  />
 				</div> */}
-					
+
 					</div>
 				</div>
 				<div className={styles.PerformanceTipsWindow}>
