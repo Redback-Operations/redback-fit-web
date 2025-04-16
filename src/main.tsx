@@ -14,6 +14,7 @@ import ReportPageContent from './components/Report/Report.tsx';
 import Features from './components/Features/Features.tsx';
 import SettingsPage from './components/Settings/Settings.tsx';
 import Goals from './components/Goals/Goals.tsx';
+import RecoveryTracker from './components/RecoveryTracker/RecoveryTracker.tsx';
 
 const router = createBrowserRouter([
 	{
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
 					{
 						path: 'settings',
 						element: <SettingsPage />,
+					},
+					{
+						path: 'recovery-tracker',
+						element: <RecoveryTracker />,
 					},
 
 				]
