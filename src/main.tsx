@@ -14,6 +14,7 @@ import ReportPageContent from './components/Report/Report.tsx';
 import Features from './components/Features/Features.tsx';
 import SettingsPage from './components/Settings/Settings.tsx';
 import Goals from './components/Goals/Goals.tsx';
+import './components/ThemeToggle/theme.css';
 
 const router = createBrowserRouter([
 	{

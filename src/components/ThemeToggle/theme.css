@@ -1,0 +1,50 @@
+/* ---------- LIGHT THEME ---------- */
+body.light {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --card-bg: #f0f0f0;
+  --button-bg: #dddddd;
+  --link-color: #007bff;
+}
+
+/* ---------- DARK THEME ---------- */
+body.dark {
+  --bg-color: #121212;
+  --text-color: #ffffff;
+  --card-bg: #1e1e1e;
+  --button-bg: #333333;
+  --link-color: #90caf9;
+}
+
+
+/* ---------- GLOBAL RESET ---------- */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ---------- Reusable Page Layout ---------- */
+.page-container {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* ---------- Theme Toggle Button ---------- */
+.theme-toggle-btn {
+  background-color: var(--button-bg);
+  color: var(--text-color);
+  border: none;
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Optional: Link colors */
+a {
+  color: var(--link-color);
+}
