@@ -4,6 +4,8 @@ import * as XLSX from 'xlsx';
 import styles from '../../routes/Dashboard/Dashboard.module.css';
 import { FaFileAlt } from 'react-icons/fa';
 import { useUserSettings } from "../../context/UserSettingsContext.tsx";
+import UnitSettingsPanel from "../UnitSettingsPanel/UnitSettingsPanel.tsx";
+
 
 // Please note this is simply a testing page.
 
@@ -134,6 +136,9 @@ const DashboardDataPredictions: React.FC = () => {
 
 	return (
 		<div className={styles.mainContainerDataPred}>
+			
+			<UnitSettingsPanel />
+
 			<h1 className={styles.chartTitle}>Data & Predictions</h1>
 			<div className={styles.topSection}>
 				<p>Power Curve Data (Test Component for Old Backend)</p>
