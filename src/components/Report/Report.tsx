@@ -3,7 +3,8 @@ import styles from '../../routes/ReportPage/ReportPage.module.css';
 import ProfilePic from '../../assets/ProfilePic.png'; // Import profile picture
 import SessionTable from '../SessionsTable/SessionsTable';
 import data from '../SessionsTable/SessionsTable.json';
-import { Card, CardContent, Typography, Grid, CircularProgress, Box, IconButton } from '@mui/material';
+import notificationsData from '../Notifications/DummyNotifications.json';
+import { Card, CardContent, Typography, Grid, CircularProgress, Box, IconButton, Badge } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
@@ -27,6 +28,9 @@ interface RecordType {
 }
 
 const DashboardLanding: React.FC = () => {
+
+	// Sample data for notifications
+	const unreadCount = notificationsData.filter(n => n.status === 'unread').length;
 
 	// State for selected session data
 	const [selectedData, setSelectedData] = useState<RecordType>(data[0]);
@@ -74,10 +78,12 @@ const DashboardLanding: React.FC = () => {
 							<h1 className={styles.dashboardTitle}>Activity Tracker</h1>
 							<Link to="/notifications" className={styles.link}>
 								<IconButton>
-									<NotificationsRounded sx={{
-										// color: unreadNotifications.length > 0 ? 'red' : 'black',
-										fontSize: 36
-									}} />
+									<Badge
+										badgeContent={unreadCount}
+										color="error"
+										invisible={unreadCount === 0} >
+										<NotificationsRounded sx={{ fontSize: 36 }} />
+									</Badge>
 								</IconButton>
 							</Link>
 							<div className={styles.profileIcon} style={{ backgroundImage: `url(${ProfilePic})` }}></div>

@@ -3,13 +3,14 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { HiBell } from 'react-icons/hi';
-import { IconButton } from '@mui/material';
+import { IconButton, Badge } from '@mui/material';
 import { NotificationsRounded } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
 import styles from '../../routes/Dashboard/Dashboard.module.css';
 import SessionTable from '../SessionsTable/SessionsTable';
 import data from '../SessionsTable/SessionsTable.json';
+import notificationsData from '../Notifications/DummyNotifications.json';
 import { Gauge } from '@mui/x-charts-pro';
 import Stack from '@mui/material/Stack';
 import { LineChart } from '@mui/x-charts/LineChart';
@@ -27,6 +28,8 @@ const heartRateData = [
 
 const DashboardLanding: React.FC = () => {
 
+	// Sample data for notifications
+	const unreadCount = notificationsData.filter(n => n.status === 'unread').length;
 
 	return (
 		<main className={styles.mainContainerLanding}>
@@ -39,15 +42,17 @@ const DashboardLanding: React.FC = () => {
 					</div>
 					<Link to="/notifications" className={styles.link}>
 						<IconButton>
-							<NotificationsRounded sx={{
-								// color: unreadNotifications.length > 0 ? 'red' : 'black',
-								fontSize: 36
-							}} />
+							<Badge
+								badgeContent={unreadCount}
+								color="error"
+								invisible={unreadCount === 0} >
+								<NotificationsRounded sx={{ fontSize: 36 }} />
+							</Badge>
 						</IconButton>
 					</Link>
-					{/*<div className={styles.profileIcon} style={{ backgroundImage: `url(${ProfilePic})` }}></div>  */}
-					{/*<NotificationBell/>*/}
-					<ProfileAvatar />
+					{/* <div className={styles.profileIcon}> */}
+						<ProfileAvatar />
+					{/* </div> */}
 				</div>
 			</div>
 			<div className={styles.heartRateCalSection}>
