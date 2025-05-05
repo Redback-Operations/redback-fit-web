@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 
+//Sign-in component
 const Signin: React.FC = () => {
+  //Form input states
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [messageStyle, setMessageStyle] = useState<React.CSSProperties>({});
 
+  //Load credentials from environment variables
   const credentials = {
-    email: 'redback.operations@deakin.edu.au',
-    password: 'project3',
+    email: import.meta.env.VITE_SIGNIN_EMAIL,
+    password: import.meta.env.VITE_SIGNIN_PASSWORD,
   };
 
+  // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     if (name === 'email') {
@@ -20,15 +24,18 @@ const Signin: React.FC = () => {
     }
   };
 
+  // Handle form submit
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
+    // Check if fields are filled
     if (!email || !password) {
       setMessage('Fill in all fields');
       setMessageStyle({ color: 'red', fontWeight: 'bold' });
       return;
     }
 
+    // Check credentials
     if (email === credentials.email && password === credentials.password) {
       setMessage('Sign in successful!');
       setMessageStyle({ color: 'green', fontWeight: 'bold' });
@@ -38,6 +45,7 @@ const Signin: React.FC = () => {
     }
   };
 
+  // Render form
   return (
     <div className="form-container sign-in-container">
       <form className="form" onSubmit={handleSubmit}>
