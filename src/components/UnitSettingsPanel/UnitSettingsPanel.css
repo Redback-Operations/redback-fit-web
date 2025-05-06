@@ -1,0 +1,37 @@
+.unit-panel {
+    background-color: #f0f4f8;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    max-width: 420px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .unit-panel h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .unit-setting {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+  
+  .unit-setting label {
+    font-weight: 500;
+    min-width: 100px;
+    color: #444;
+  }
+  
+  .unit-setting select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+  }  

@@ -1,20 +1,18 @@
 import { useUserSettings } from "../../context/UserSettingsContext.tsx";
+
+import './UnitSettingsPanel.css';
 export default function UnitSettingsPanel() {
   const { settings, updateSettings } = useUserSettings();
 
   return (
-    <div style={{
-      background: "#f0f4f8",
-      padding: "1rem",
-      borderRadius: "10px",
-      marginBottom: "1rem",
-      maxWidth: "400px"
-    }}>
-      <h3 style={{ marginBottom: "10px" }}>Unit Preferences</h3>
+    <div className="unit-panel">
 
-      <div style={{ marginBottom: "1rem" }}>
+      <h2>Unit Preferences</h2>
+
+      <div className="unit-setting">
         <label style={{ marginRight: "10px" }}>Distance Unit:</label>
         <select
+          id="distanceUnit"
           value={settings.distanceUnit}
           onChange={(e) =>
             updateSettings({ distanceUnit: e.target.value as "km" | "mi" })
@@ -25,9 +23,10 @@ export default function UnitSettingsPanel() {
         </select>
       </div>
 
-      <div>
-        <label style={{ marginRight: "10px" }}>Time Format:</label>
+      <div className="unit-setting">
+        <label htmlFor="timeUnit">Time Unit:</label>
         <select
+          id="timeUnit"
           value={settings.timeUnit}
           onChange={(e) =>
             updateSettings({ timeUnit: e.target.value as "min" | "hr:min" })
