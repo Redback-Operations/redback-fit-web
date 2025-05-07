@@ -2,7 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from '../../routes/Dashboard/Dashboard.module.css';
 import { BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsMenuButtonWideFill, BsFillGearFill, BsTable } from 'react-icons/bs';
-import Logo from '../../assets/Redback_logo.png'; // Ensure the path is correct
+import { BsPersonPlusFill } from 'react-icons/bs'; // ✅ Add this for icon
+import Logo from '../../assets/Redback_logo.png';
 import { Link } from 'react-router-dom';
 
 const Sidebar: React.FC = () => {
@@ -23,6 +24,7 @@ const Sidebar: React.FC = () => {
 				<li className={styles.sidebarListItem}><NavLink to="/reports"><BsMenuButtonWideFill /> Reports</NavLink></li>
 				<li className={styles.sidebarListItem}><NavLink to='/dashboard/data-predictions'><BsTable /> Data & Predictions</NavLink></li>
 				<li className={styles.sidebarListItem}><NavLink to="/dashboard/weekly-summary"><BsGrid1X2Fill /> Weekly Summary</NavLink></li>
+				<li className={styles.sidebarListItem}><NavLink to="/dashboard/my-friends"><BsPersonPlusFill /> My Friends</NavLink></li> 
 			</ul>
 			<div className={styles.sidebarSettings}>
 				<NavLink to="/dashboard/settings" className={styles.sidebarBottomLink}><BsFillGearFill /> Settings</NavLink>
