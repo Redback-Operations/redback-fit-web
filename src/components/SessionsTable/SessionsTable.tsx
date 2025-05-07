@@ -1,8 +1,8 @@
-import { MouseEventHandler, useCallback, useState } from 'react';
-import data from '../SessionsTable/SessionsTable.json';
-
-type Data = typeof data;
-type SortKeys = keyof Data[0];
+import { MouseEventHandler, useCallback, useEffect, useState } from 'react';
+import localData from '../SessionsTable/SessionsTable.json'; 
+type DataItem = typeof localData[0];
+type Data = DataItem[];
+type SortKeys = keyof DataItem;
 type SortOrder = 'ascn' | 'desc';
 
 function sortData({
@@ -16,15 +16,11 @@ function sortData({
 }) {
 	if (!sortKey) return tableData;
 
-	const sortedData = data.sort((a, b) => {
+	const sortedData = [...tableData].sort((a, b) => {
 		return a[sortKey] > b[sortKey] ? 1 : -1;
 	});
 
-	if (reverse) {
-		return sortedData.reverse();
-	}
-
-	return sortedData;
+	return reverse ? sortedData.reverse() : sortedData;
 }
 
 function SortButton({
@@ -54,15 +50,14 @@ function SortButton({
 }
 
 function SessionTable({
-	data,
 	onRowClick,
 }: {
-	data: Data;
-	onRowClick: (session: Data[0]) => void;
+	onRowClick: (session: DataItem) => void;
 }) {
+	const [data, setData] = useState<Data>([]);
 	const [sortKey, setSortKey] = useState<SortKeys>('id');
 	const [sortOrder, setSortOrder] = useState<SortOrder>('ascn');
-	const [selectedId, setSelectedId] = useState<number | null>(1); // Track selected item ID
+	const [selectedId, setSelectedId] = useState<number | null>(1);
 
 	const headers: { key: SortKeys; label: string }[] = [
 		{ key: 'id', label: 'Session' },
@@ -71,6 +66,22 @@ function SessionTable({
 		{ key: 'date', label: 'Date' },
 		{ key: 'typeOfTraining', label: 'Training' },
 	];
+	
+	useEffect(() => {
+		fetch('http://localhost:5000/api/dashboard/goals')
+			.then((res) => res.json())
+			.then((json) => {
+				if (Array.isArray(json)) {
+					setData(json);
+				} else {
+					throw new Error('Invalid format');
+				}
+			})
+			.catch((err) => {
+				console.warn('Using fallback JSON file:', err.message);
+				setData(localData);
+			});
+	}, []);
 
 	const sortedData = useCallback(
 		() => sortData({ tableData: data, sortKey, reverse: sortOrder === 'desc' }),
@@ -82,30 +93,28 @@ function SessionTable({
 		setSortKey(key);
 	}
 
-	function handleRowClick(session: Data[0]) {
-		setSelectedId(session.id); // Set the clicked item's ID
-		onRowClick(session); // Trigger parent callback
+	function handleRowClick(session: DataItem) {
+		setSelectedId(session.id);
+		onRowClick(session);
 	}
 
 	return (
 		<table>
 			<thead>
 				<tr>
-					{headers.map((row) => {
-						return (
-							<td key={row.key}>
-								{row.label}{' '}
-								<SortButton
-									columnKey={row.key}
-									onClick={() => changeSort(row.key)}
-									{...{
-										sortOrder,
-										sortKey,
-									}}
-								/>
-							</td>
-						);
-					})}
+					{headers.map((row) => (
+						<td key={row.key}>
+							{row.label}{' '}
+							<SortButton
+								columnKey={row.key}
+								onClick={() => changeSort(row.key)}
+								{...{
+									sortOrder,
+									sortKey,
+								}}
+							/>
+						</td>
+					))}
 				</tr>
 			</thead>
 
@@ -115,9 +124,9 @@ function SessionTable({
 						key={session.id}
 						style={{
 							cursor: 'pointer',
-							backgroundColor: selectedId === session.id ? 'lightblue' : '#e97462', // Conditional styling
+							backgroundColor: selectedId === session.id ? 'lightblue' : '#e97462',
 						}}
-						onClick={() => handleRowClick(session)} // Pass clicked session to the parent
+						onClick={() => handleRowClick(session)}
 					>
 						<td>{session.id}</td>
 						<td>{session.coach}</td>
