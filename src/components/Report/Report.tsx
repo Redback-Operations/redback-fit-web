@@ -3,64 +3,42 @@ import styles from '../../routes/ReportPage/ReportPage.module.css';
 import ProfilePic from '../../assets/ProfilePic.png'; // Import profile picture
 import SessionTable from '../SessionsTable/SessionsTable';
 import data from '../SessionsTable/SessionsTable.json';
-import { Card, CardContent, Typography, Grid, CircularProgress, Box } from '@mui/material';
+import notificationsData from '../Notifications/DummyNotifications.json';
+import { Card, CardContent, Typography, Grid, CircularProgress, Box, IconButton, Badge } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { FavoriteBorderRounded, MonitorHeartRounded, FitnessCenterRounded, StackedLineChartRounded, BoltRounded, StairsRounded, DirectionsWalkRounded, AirlineSeatFlatAngledRounded } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 
-// Mock data
-const mockData = {
-	heartRate: 102,
-	zoneMinutes: 122,
-	exerciseDays: 2,
-	distance: 1.91,
-	calories: 1653,
-	floors: 0,
-	sleepDuration: '6h 58m',
-	steps: 4770,
-	activeZoneMinutes: 122,
-};
+import { NotificationsRounded, FavoriteBorderRounded, MonitorHeartRounded, FitnessCenterRounded, StackedLineChartRounded, BoltRounded, StairsRounded, DirectionsWalkRounded, AirlineSeatFlatAngledRounded } from '@mui/icons-material';
 
-const records = [
-	{
-		id: 1,
-		heartRate: 79,
-		zoneMin: 122,
-		exerciseDays: 2,
-		sleepDuration: '6h 58m',
-		steps: 4770,
-		distance: '1.91 mi',
-		energyBurned: '1653 cal',
-	},
-	{
-		id: 2,
-		heartRate: 85,
-		zoneMin: 140,
-		exerciseDays: 3,
-		sleepDuration: '7h 10m',
-		steps: 5250,
-		distance: '2.5 mi',
-		energyBurned: '1800 cal',
-	},
-	{
-		id: 3,
-		heartRate: 70,
-		zoneMin: 100,
-		exerciseDays: 1,
-		sleepDuration: '5h 45m',
-		steps: 4000,
-		distance: '1.2 mi',
-		energyBurned: '1500 cal',
-	},
-];
+interface RecordType {
+	id: number;
+	coach: string;
+	duration: string;
+	date: string;
+	typeOfTraining: string;
+	heartRate: number;
+	zoneMinutes: number;
+	exerciseDays: number;
+	distance: number;
+	calories: number;
+	floors: number;
+	sleepDuration: string;
+	steps: number;
+	activeZoneMinutes: number;
+}
 
 const DashboardLanding: React.FC = () => {
 
-	const [selectedRecord] = useState(records[0]);
+	// Sample data for notifications
+	const unreadCount = notificationsData.filter(n => n.status === 'unread').length;
 
-	// Example of using the state
-	console.log(selectedRecord);
+	// State for selected session data
+	const [selectedData, setSelectedData] = useState<RecordType>(data[0]);
 
-	// Handle record selection
+	// Handle record selection from the table
+	const handleRecordClick = (record: RecordType) => {
+		setSelectedData(record);
+	};
 
 	const theme = createTheme({
 		components: {
@@ -91,7 +69,6 @@ const DashboardLanding: React.FC = () => {
 				<ThemeProvider theme={theme}>
 					<Box sx={{
 						height: '100vh', // Full viewport height
-						overflowY: 'auto', // Enable vertical scrolling 
 						padding: '20px',
 						minHeight: '100vh',
 						width: '100%'
@@ -99,6 +76,16 @@ const DashboardLanding: React.FC = () => {
 
 						<div className={styles.topBar}>
 							<h1 className={styles.dashboardTitle}>Activity Tracker</h1>
+							<Link to="/notifications" className={styles.link}>
+								<IconButton>
+									<Badge
+										badgeContent={unreadCount}
+										color="error"
+										invisible={unreadCount === 0} >
+										<NotificationsRounded sx={{ fontSize: 36 }} />
+									</Badge>
+								</IconButton>
+							</Link>
 							<div className={styles.profileIcon} style={{ backgroundImage: `url(${ProfilePic})` }}></div>
 						</div>
 
@@ -111,16 +98,16 @@ const DashboardLanding: React.FC = () => {
 										<Box sx={{ position: 'relative', display: 'inline-flex' }}>
 											<CircularProgress
 												variant="determinate"
-												value={(mockData.heartRate / 220) * 100}
+												value={(selectedData.heartRate / 220) * 100}
 												size={100}
 												thickness={4}
 												sx={{
 													color:
-														mockData.heartRate >= 150
+														selectedData.heartRate >= 150
 															? 'red'
-															: mockData.heartRate >= 100
+															: selectedData.heartRate >= 100
 																? 'yellow'
-																: mockData.heartRate >= 60
+																: selectedData.heartRate >= 60
 																	? 'green'
 																	: 'blue',
 													margin: '12px'
@@ -138,16 +125,16 @@ const DashboardLanding: React.FC = () => {
 												}}
 											>
 												<FavoriteBorderRounded sx={{
-													color: mockData.heartRate >= 150 ? 'red'
-														: mockData.heartRate >= 100 ? 'yellow'
-															: mockData.heartRate >= 60 ? 'green'
+													color: selectedData.heartRate >= 150 ? 'red'
+														: selectedData.heartRate >= 100 ? 'yellow'
+															: selectedData.heartRate >= 60 ? 'green'
 																: 'blue',
 													fontSize: 30
 												}} />
 											</Box>
 										</Box>
 										<Typography variant="h4" sx={{ marginTop: '10px' }}>
-											{mockData.heartRate} bpm
+											{selectedData.heartRate} bpm
 										</Typography>
 									</CardContent>
 								</Card>
@@ -160,7 +147,7 @@ const DashboardLanding: React.FC = () => {
 										<Box sx={{ position: 'relative', display: 'inline-flex' }}>
 											<CircularProgress
 												variant="determinate"
-												value={(mockData.heartRate / 150) * 100}
+												value={(selectedData.heartRate / 150) * 100}
 												size={100}
 												thickness={4}
 												sx={{
@@ -186,7 +173,7 @@ const DashboardLanding: React.FC = () => {
 											</Box>
 										</Box>
 										<Typography variant="h4" sx={{ marginTop: '10px' }}>
-											{mockData.zoneMinutes} mins
+											{selectedData.zoneMinutes} mins
 										</Typography>
 									</CardContent>
 								</Card>
@@ -201,7 +188,7 @@ const DashboardLanding: React.FC = () => {
 										<FitnessCenterRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 										<Box>
 											<Typography variant="h5">Exercise Days</Typography>
-											<Typography variant="body1">{mockData.exerciseDays} of 5 this week</Typography>
+											<Typography variant="body1">{selectedData.exerciseDays} of 5 this week</Typography>
 										</Box>
 									</Box>
 								</CardContent>
@@ -217,7 +204,7 @@ const DashboardLanding: React.FC = () => {
 											<StackedLineChartRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 											<Box>
 												<Typography variant="h5">Distance</Typography>
-												<Typography variant="h4">{mockData.distance} mi</Typography>
+												<Typography variant="h4">{selectedData.distance} mi</Typography>
 											</Box>
 										</Box>
 									</CardContent>
@@ -231,7 +218,7 @@ const DashboardLanding: React.FC = () => {
 											<BoltRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 											<Box>
 												<Typography variant="h5">Calories</Typography>
-												<Typography variant="h4">{mockData.calories}</Typography>
+												<Typography variant="h4">{selectedData.calories}</Typography>
 											</Box>
 										</Box>
 									</CardContent>
@@ -247,7 +234,7 @@ const DashboardLanding: React.FC = () => {
 											<DirectionsWalkRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 											<Box>
 												<Typography variant="h5">Steps</Typography>
-												<Typography variant="h4">{mockData.steps}</Typography>
+												<Typography variant="h4">{selectedData.steps}</Typography>
 											</Box>
 										</Box>
 									</CardContent>
@@ -261,7 +248,7 @@ const DashboardLanding: React.FC = () => {
 											<StairsRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 											<Box>
 												<Typography variant="h5">Floors</Typography>
-												<Typography variant="h4">{mockData.floors}</Typography>
+												<Typography variant="h4">{selectedData.floors}</Typography>
 											</Box>
 										</Box>
 									</CardContent>
@@ -277,7 +264,7 @@ const DashboardLanding: React.FC = () => {
 										<AirlineSeatFlatAngledRounded sx={{ fontSize: 30, marginRight: '12px', color: 'black' }} />
 										<Box>
 											<Typography variant="h5">Sleep Duration</Typography>
-											<Typography variant="h4">{mockData.sleepDuration}</Typography>
+											<Typography variant="h4">{selectedData.sleepDuration}</Typography>
 										</Box>
 									</Box>
 								</CardContent>
@@ -287,8 +274,7 @@ const DashboardLanding: React.FC = () => {
 						<div className={styles.heartRateCalSection}>
 							<div className={styles.SessionsProfileWindow}>
 								<h1>Your Sessions</h1>
-								<SessionTable data={data}>
-								</SessionTable>
+								<SessionTable data={data} onRowClick={handleRecordClick} />
 							</div>
 						</div>
 					</Box>
