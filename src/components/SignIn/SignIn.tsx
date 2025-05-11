@@ -1,77 +1,78 @@
-import React, { useState } from 'react';
+import { Component } from 'react';
 
-//Sign-in component
-const Signin: React.FC = () => {
-  //Form input states
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
-  const [messageStyle, setMessageStyle] = useState<React.CSSProperties>({});
+class Signin extends Component {
+	state = {
+		email: '',
+		password: '',
+		message: '',
+		messageStyle: {},
+	};
 
-  //Load credentials from environment variables
-  const credentials = {
-    email: import.meta.env.VITE_SIGNIN_EMAIL,
-    password: import.meta.env.VITE_SIGNIN_PASSWORD,
-  };
+	// Hardcoded credentials
+	credentials = {
+		email: 'redback.operations@deakin.edu.au',
+		password: 'project3',
+	};
 
-  // Handle input changes
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    if (name === 'email') {
-      setEmail(value);
-    } else if (name === 'password') {
-      setPassword(value);
-    }
-  };
+	handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		this.setState({ [e.target.name]: e.target.value });
+	};
 
-  // Handle form submit
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+	handleSubmit = (e: React.FormEvent) => {
+		e.preventDefault();
+		const { email, password } = this.state;
 
-    // Check if fields are filled
-    if (!email || !password) {
-      setMessage('Fill in all fields');
-      setMessageStyle({ color: 'red', fontWeight: 'bold' });
-      return;
-    }
+		// Check if fields are empty
+		if (!email || !password) {
+			this.setState({ 
+				message: 'Fill in all fields', 
+				messageStyle: { color: 'red', fontWeight: 'bold' }
+			});
+			return;
+		}
 
-    // Check credentials
-    if (email === credentials.email && password === credentials.password) {
-      setMessage('Sign in successful!');
-      setMessageStyle({ color: 'green', fontWeight: 'bold' });
-    } else {
-      setMessage('Invalid email or password.');
-      setMessageStyle({ color: 'red', fontWeight: 'bold' });
-    }
-  };
+		// Check credentials
+		if (email === this.credentials.email && password === this.credentials.password) {
+			this.setState({ 
+				message: 'Sign in successful!', 
+				messageStyle: { color: 'green', fontWeight: 'bold' }
+			});
+		}
+		else {
+			this.setState({ 
+				message: 'Invalid email or password.', 
+				messageStyle: { color: 'red', fontWeight: 'bold' }
+			});
+		}
+	};
 
-  // Render form
-  return (
-    <div className="form-container sign-in-container">
-      <form className="form" onSubmit={handleSubmit}>
-        <h1 className="form-title">Sign In</h1>
+	render() {
+		const { messageStyle } = this.state;
+		return (
+			<div className="form-container sign-in-container">
+				<form className="form" onSubmit={this.handleSubmit}>
+					<h1 className="form-title">Sign In</h1>
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          value={email}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={handleChange}
-        />
+					<input
+						type="email"
+						name="email"
+						placeholder="Email Address"
+						onChange={this.handleChange}
+					/>
+					<input
+						type="password"
+						name="password"
+						placeholder="Password"
+						onChange={this.handleChange}
+					/>
 
-        <button className="form-button">Sign In</button>
-        <p style={messageStyle}>{message}</p>
-        <a className="find-password" href="#">Forgot Password?</a>
-      </form>
-    </div>
-  );
-};
+					<button className="form-button">Sign In</button>
+					<p style={messageStyle}>{this.state.message}</p>
+					<a className="find-password" href="#">Forgot Password?</a>
+				</form>
+			</div>
+		);
+	}
+}
 
 export default Signin;
