@@ -1,73 +1,73 @@
-import React, { useState } from 'react';
+import { Component } from 'react';
 
-// Sign-up component
-const SignUp: React.FC = () => {
-  //Form input states
-  const [fullName, setFullName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
-  const [messageStyle, setMessageStyle] = useState<React.CSSProperties>({});
+class SignUp extends Component {
+	state = {
+		fullName: '',
+		email: '',
+		password: '',
+		message: '',
+		messageStyle: {}, // Object to hold dynamic inline styles
+	};
 
-  //Handle input changes
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+	handleChange = (e: { target: { name: string; value: string; }; }) => {
+		this.setState({ [e.target.name]: e.target.value });
+	};
 
-    if (name === 'fullName') setFullName(value);
-    else if (name === 'email') setEmail(value);
-    else if (name === 'password') setPassword(value);
-  };
+	handleSubmit = (e: { preventDefault: () => void; }) => {
+		e.preventDefault();
 
-  //Handle form submit
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+		const { fullName, email, password } = this.state;
 
-    //Check all fields are filled
-    if (!fullName || !email || !password) {
-      setMessage('Fill in all fields');
-      setMessageStyle({ color: 'red', fontWeight: 'bold' });
-    } else {
-      //Dummy success message
-      setMessage('Account created successfully (dummy logic)');
-      setMessageStyle({ color: 'green', fontWeight: 'bold' });
-    }
-  };
+		if (!fullName || !email || !password) {
+			this.setState({ 
+				message: 'Fill in all fields', 
+				messageStyle: { color: 'red', fontWeight: 'bold' }
+			});
+		}
+		else {
+			this.setState({ 
+				message: 'Account created successfully (dummy logic)', 
+				messageStyle: { color: 'green', fontWeight: 'bold' }
+			});
+		}
+	};
 
-  //Render form
-  return (
-    <div className="form-container sign-up-container">
-      <form className="form" onSubmit={handleSubmit}>
-        <h1 className="form-title">Create Account</h1>
+	render() {
+		const { message, messageStyle } = this.state;
 
-        <input
-          type="text"
-          name="fullName"
-          placeholder="Full Name"
-          value={fullName}
-          onChange={handleChange}
-        />
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          value={email}
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={password}
-          onChange={handleChange}
-        />
-        <button className="form-button" type="submit">
-          Sign Up
-        </button>
+		return (
+			<div className="form-container sign-up-container">
+				<form className="form" onSubmit={this.handleSubmit}>
+					<h1 className="form-title">Create Account</h1>
 
-        {message && <p style={{ ...messageStyle, margin: '20px 0' }}>{message}</p>}
-      </form>
-    </div>
-  );
-};
+					<input
+						type="text"
+						name="fullName"
+						placeholder="Full Name"
+						onChange={this.handleChange}
+					/>
+					<input
+						type="email"
+						name="email"
+						placeholder="Email Address"
+						onChange={this.handleChange}
+					/>
+					<input
+						type="password"
+						name="password"
+						placeholder="Password"
+						onChange={this.handleChange}
+					/>
+					<button className="form-button" type="submit">
+						Sign Up
+					</button>
+					
+					{/* Inline styles applied dynamically */}
+					{message && <p style={messageStyle}>{message}</p>}
+				</form>
+			</div>
+		);
+	}
+}
 
 export default SignUp;
