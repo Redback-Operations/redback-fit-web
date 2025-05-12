@@ -35,3 +35,9 @@
     border: 1px solid #aaa;
     background-color: #fff;
   }  
+
+  .unit-panel-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }

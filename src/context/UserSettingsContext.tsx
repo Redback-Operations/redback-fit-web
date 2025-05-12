@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type UnitSettings = {
-  distanceUnit: "km" | "mi";
+  distanceUnit: "m" | "km" | "mi";
   timeUnit: "min" | "hr:min";
 };
 

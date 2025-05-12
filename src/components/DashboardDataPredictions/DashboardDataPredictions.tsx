@@ -102,14 +102,33 @@ const DashboardDataPredictions: React.FC = () => {
 								  if (typeof value === "number") {
 									const lowerCell = cell.toLowerCase();
 							  
-									// Convert distance (assuming the column name includes "distance")
-									if (lowerCell.includes("distance")) {
-									  return settings.distanceUnit === "mi"
-										? `${(value * 0.621371).toFixed(2)} mi`
-										: `${value} km`;
+									// Convert distance
+									if (
+										lowerCell.includes("distance") ||
+										lowerCell.includes("km") ||
+										lowerCell.includes("kilometer") ||
+										lowerCell.includes("meters") ||
+										lowerCell.includes("meter") 
+									) {
+										
+										let distance = value;
+
+										if (lowerCell.includes("meter") && value < 10000) {
+											distance = value / 1000;
+										}
+
+										if (settings.distanceUnit === "m") {
+											return `${(distance * 1000).toFixed(0)} m`; 
+										}
+
+									  	if (settings.distanceUnit === "mi") {
+											return `${(distance * 0.621371).toFixed(2)} mi`;
+										}
+
+										return `${distance.toFixed(2)} km`;
 									}
 							  
-									// Convert time (assuming the column name includes "duration" or "time")
+									// Convert time
 									if (lowerCell.includes("duration") || lowerCell.includes("time")) {
 									  if (settings.timeUnit === "hr:min") {
 										const hours = Math.floor(value / 60);
@@ -136,8 +155,6 @@ const DashboardDataPredictions: React.FC = () => {
 
 	return (
 		<div className={styles.mainContainerDataPred}>
-			
-			<UnitSettingsPanel />
 
 			<h1 className={styles.chartTitle}>Data & Predictions</h1>
 			<div className={styles.topSection}>
@@ -192,6 +209,8 @@ const DashboardDataPredictions: React.FC = () => {
 					</div>
 				)}
 			</div>
+
+			<UnitSettingsPanel />
 
 			<div className={styles.bottomSection}>
 				{!fileLoaded ? (
