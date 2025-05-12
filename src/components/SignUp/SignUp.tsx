@@ -1,36 +1,60 @@
-import { Component } from 'react';
+import React, { Component, ChangeEvent, FormEvent, CSSProperties } from 'react'
+import axios from '../../api/axiosClient';
 
-class SignUp extends Component {
-	state = {
-		fullName: '',
-		email: '',
-		password: '',
-		message: '',
-		messageStyle: {}, // Object to hold dynamic inline styles
-	};
+// Define the state interface
+interface SignUpState {
+  fullName: string
+  email: string
+  password: string
+  message: string
+  messageStyle: CSSProperties
+}
 
-	handleChange = (e: { target: { name: string; value: string; }; }) => {
-		this.setState({ [e.target.name]: e.target.value });
-	};
+class SignUp extends Component<{}, SignUpState> {
+  state: SignUpState = {
+    fullName: '',
+    email: '',
+    password: '',
+    message: '',
+    messageStyle: {},
+  }
 
-	handleSubmit = (e: { preventDefault: () => void; }) => {
-		e.preventDefault();
+  handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = e.target
+    this.setState({ [name]: value } as unknown as Pick<SignUpState, keyof SignUpState>)
+  }
 
-		const { fullName, email, password } = this.state;
+  handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault()
+    const { fullName, email, password } = this.state
 
-		if (!fullName || !email || !password) {
-			this.setState({ 
-				message: 'Fill in all fields', 
-				messageStyle: { color: 'red', fontWeight: 'bold' }
-			});
-		}
-		else {
-			this.setState({ 
-				message: 'Account created successfully (dummy logic)', 
-				messageStyle: { color: 'green', fontWeight: 'bold' }
-			});
-		}
-	};
+    if (!fullName || !email || !password) {
+      this.setState({
+        message: 'Full name, email, and password are required',
+        messageStyle: { color: 'red', fontWeight: 'bold' },
+      })
+      return
+    }
+
+    axios
+      .post('/auth/register', {
+        name: fullName,
+        email,
+        password,
+      })
+      .then(() => {
+        // Redirect to login page with a "registered" flag
+        window.location.href = '/login?registered=true'
+      })
+      .catch((err: any) => {
+        this.setState({
+          message: err.response?.data?.msg || 'Registration failed',
+          messageStyle: { color: 'red', fontWeight: 'bold' },
+        })
+      })
+  }
+
+	
 
 	render() {
 		const { message, messageStyle } = this.state;
