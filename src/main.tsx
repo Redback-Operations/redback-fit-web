@@ -65,7 +65,10 @@ const router = createBrowserRouter([
 						path: 'settings',
 						element: <SettingsPage />,
 					},
-					
+					{
+						path: 'recovery-tracker',
+						element: <RecoveryTracker />,
+					},
 
 				]
 			},
