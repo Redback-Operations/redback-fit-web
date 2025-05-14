@@ -91,6 +91,14 @@ const DashboardDataPredictions: React.FC = () => {
 	const renderTable = () => (
 		<div className={styles.filePreview}>
 			<table>
+				<thead>
+					<tr>
+						{data.length > 0 &&
+							Object.keys(data[0]).map((key, idx) => (
+								<th key={idx}>{key}</th>
+							))}
+					</tr>
+				</thead>
 				<tbody>
 					{data.map((row, index) => (
 						<tr key={index}>
