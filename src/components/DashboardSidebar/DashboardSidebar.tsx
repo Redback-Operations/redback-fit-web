@@ -22,6 +22,7 @@ const Sidebar: React.FC = () => {
 				<li className={styles.sidebarListItem}><NavLink to="/dashboard/categories"><BsFillGrid3X3GapFill /> Categories</NavLink></li>
 				<li className={styles.sidebarListItem}><NavLink to="/dashboard/goals"><BsFillGrid3X3GapFill /> Goals</NavLink></li>
 				<li className={styles.sidebarListItem}><NavLink to="/reports"><BsMenuButtonWideFill /> Reports</NavLink></li>
+				<li className={styles.sidebarListItem}><NavLink to="/dashboard/recovery-tracker"><BsMenuButtonWideFill /> Recovery Tracker</NavLink></li>
 				<li className={styles.sidebarListItem}><NavLink to='/dashboard/data-predictions'><BsTable /> Data & Predictions</NavLink></li>
 				<li className={styles.sidebarListItem}><NavLink to="/dashboard/weekly-summary"><BsGrid1X2Fill /> Weekly Summary</NavLink></li>
 				<li className={styles.sidebarListItem}><NavLink to="/dashboard/my-friends"><BsPersonPlusFill /> My Friends</NavLink></li> 

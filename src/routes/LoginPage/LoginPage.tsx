@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './LoginPage.style.css';
 import Logo from '../../assets/Redback_logo.png';
 import SignUp from '../../components/SignUp/SignUp.tsx';
@@ -12,8 +12,22 @@ const LoginPage: React.FC = () => {
 	const handleClickSignUpButton = () => setRightPanelActive(true);
 	const handleClickSignInButton = () => setRightPanelActive(false);
 
+	useEffect(() => {
+		const style = document.createElement('style');
+		style.innerHTML = `
+			body {
+				background: #f8f9fa;
+			}
+		`;
+		document.head.appendChild(style);
+
+		return () => {
+			document.head.removeChild(style);
+		};
+	}, []);
+
 	return (
-		<div className="page-container">
+		<div className="Login">
 			<div
 				style={{
 					display: 'flex',
@@ -28,14 +42,10 @@ const LoginPage: React.FC = () => {
 					style={{
 						fontWeight: 'bold',
 						fontSize: '2rem',
-						color: 'var(--text-color)', // ✅ updated for theme
 					}}
 				>
-					<Link
-						to="/"
-						style={{ textDecorationLine: 'none', color: 'var(--text-color)' }}
-					>
-						ReflexionPro
+					<Link to="/"  style = {{ textDecorationLine: 'none', color: 'black' }}>
+					ReflexionPro
 					</Link>
 				</div>
 			</div>

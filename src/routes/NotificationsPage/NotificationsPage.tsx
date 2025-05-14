@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import styles from './ReportPage.module.css';
+import styles from './NotificationsPage.module.css';
 import DashboardHeader from '../../components/DashboardHeader/DashboardHeader';
 import DashboardSidebar from '../../components/DashboardSidebar/DashboardSidebar';
 import { Outlet } from 'react-router-dom';
 
-const ReportPage = () => {
+const NotificationsPage = () => {
 	useEffect(() => {
 		// Set the body background color when the Dashboard mounts
 		document.body.style.backgroundColor = ' #f8f9fa' ;
@@ -26,4 +26,4 @@ const ReportPage = () => {
 	);
 };
 
-export default ReportPage;
+export default NotificationsPage;
