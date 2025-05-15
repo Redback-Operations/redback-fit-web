@@ -16,6 +16,7 @@ import SettingsPage from './components/Settings/Settings.tsx';
 import Goals from './components/Goals/Goals.tsx';
 import './components/ThemeToggle/theme.css';
 import CustomNotification from './components/CustomNotification/CustomNotification.tsx';
+import WeeklySummary from './components/WeeklySummary/weeklySummary.tsx'
 const router = createBrowserRouter([
 	{
 		element: <Root />,
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
 					{
 						path: 'recovery-tracker',
 						element: <RecoveryTracker />,
+					},
+					{
+						path: 'weekly-summary',
+						element: <WeeklySummary />,
 					},
 				]
 			},
