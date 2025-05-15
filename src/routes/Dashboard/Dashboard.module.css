@@ -569,11 +569,11 @@ body {
   color: #ffffff;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .formButton:hover {
-  background-color: #e97462;
+  background-color: #b3a7b7;
 }
 
 
@@ -612,15 +612,19 @@ body {
 
 .filePreview {
   margin-top: 1.5rem;
+  margin-left: 240px;
   border: 1px solid #ccc;
   padding: 1rem;
   background-color: #f9f9f9;
   color: #000;
   overflow-x: auto;
-  height: 250px;
-  width: 100%;
-  display: flex;
+  overflow-y: visible;
+  height: auto;
+  width: calc(100% - 240px);
+  display: block;
   justify-content: center;
+  box-sizing: border-box;
+  max-height: unset;
 }
 
 .filePreview table {
@@ -652,6 +656,11 @@ body {
   border-radius: 5px;
   cursor: pointer;
   margin: 10px auto 20px;
+  transition: background-color 0.2s ease;
+}
+
+.resetButton:hover {
+  background-color: #b3a7b7;
 }
 
 .lineChart{

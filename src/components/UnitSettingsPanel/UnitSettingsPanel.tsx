@@ -1,5 +1,4 @@
 import { useUserSettings } from "../../context/UserSettingsContext.tsx";
-
 import './UnitSettingsPanel.css';
 export default function UnitSettingsPanel() {
   const { settings, updateSettings } = useUserSettings();

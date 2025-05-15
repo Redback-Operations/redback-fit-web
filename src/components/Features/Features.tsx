@@ -171,7 +171,7 @@ const Features: React.FC = () => {
 								cursor: 'pointer',
 								transition: 'background-color 0.3s ease-in-out',
 							}}
-							onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#e97462')}
+							onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#b3a7b7')}
 							onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#e97462')}
 						>
 							Join Now and Transform Your Fitness
