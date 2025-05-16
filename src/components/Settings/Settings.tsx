@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Settings.css';
 
 interface Settings {
@@ -23,6 +23,23 @@ const SettingsPage: React.FC = () => {
 		password: '',
 		twoFactorAuth: false,
 	});
+
+	// Dummy API
+	useEffect(() => {
+		fetch('http://localhost:5000/api/dashboard/settings')
+			.then(res => res.json())
+			.then(json => {
+				if (json && typeof json === 'object') {
+					setSettings(prev => ({
+						...prev,
+						...json
+					}));
+				}
+			})
+			.catch(err => {
+				console.warn('Using default settings due to fetch error:', err.message);
+			});
+	}, []);
 
 	const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
@@ -73,7 +90,6 @@ const SettingsPage: React.FC = () => {
 					</div>
 				</div>
 
-
 				<div className="settings-section">
 					<h2>Security</h2>
 					<div className="form-group">
@@ -97,7 +113,6 @@ const SettingsPage: React.FC = () => {
 						/>
 					</div>
 				</div>
-
 
 				<div className="settings-section">
 					<h2>Notifications</h2>
@@ -133,7 +148,6 @@ const SettingsPage: React.FC = () => {
 					</div>
 				</div>
 
-
 				<div className="settings-section">
 					<h2>Recent Activity</h2>
 					<ul className="activity-list">
@@ -152,10 +166,3 @@ const SettingsPage: React.FC = () => {
 };
 
 export default SettingsPage;
-
-
-
-
-
-
-
