@@ -19,6 +19,9 @@ import Goals from './components/Goals/Goals.tsx';
 import './components/ThemeToggle/theme.css';
 import CustomNotification from './components/CustomNotification/CustomNotification.tsx';
 import WeeklySummary from './components/WeeklySummary/weeklySummary.tsx'
+import WeeklySummary from './components/WeeklySummary/weeklySummary.tsx';
+import MyFriendsPage from './components/FriendRequest/MyFriendsPage'; 
+import './components/ThemeToggle/theme.css';
 import WeeklySummary from './components/WeeklySummary/weeklySummary.tsx'
 const router = createBrowserRouter([
 	{
@@ -81,6 +84,10 @@ const router = createBrowserRouter([
 						path: 'weekly-summary',
 						element: <WeeklySummary />,
 					},
+					{
+						path: 'my-friends',
+						element: <MyFriendsPage />, // ✅ Added route
+					}
 				]
 			},
 			{
