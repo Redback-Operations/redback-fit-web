@@ -16,12 +16,13 @@ import NotificationsPageContent from './components/Notifications/Notifications.t
 import Features from './components/Features/Features.tsx';
 import SettingsPage from './components/Settings/Settings.tsx';
 import Goals from './components/Goals/Goals.tsx';
-
+import './components/ThemeToggle/theme.css';
+import CustomNotification from './components/CustomNotification/CustomNotification.tsx';
+import WeeklySummary from './components/WeeklySummary/weeklySummary.tsx'
 import WeeklySummary from './components/WeeklySummary/weeklySummary.tsx';
 import MyFriendsPage from './components/FriendRequest/MyFriendsPage'; 
 import './components/ThemeToggle/theme.css';
 import WeeklySummary from './components/WeeklySummary/weeklySummary.tsx'
-
 const router = createBrowserRouter([
 	{
 		element: <Root />,
@@ -64,19 +65,29 @@ const router = createBrowserRouter([
 						element: <Goals />,
 					},
 					{
+						path: 'custom-notification',
+						element: <CustomNotification />,
+					},
+					{
 						path: 'settings',
 						element: <SettingsPage />,
+					},
+					{
+						path: 'recovery-tracker',
+						element: <RecoveryTracker />,
 					},
 					{
 						path: 'weekly-summary',
 						element: <WeeklySummary />,
 					},
-
+          {
+						path: 'weekly-summary',
+						element: <WeeklySummary />,
+					},
 					{
 						path: 'my-friends',
 						element: <MyFriendsPage />, // ✅ Added route
 					}
-
 				]
 			},
 			{
