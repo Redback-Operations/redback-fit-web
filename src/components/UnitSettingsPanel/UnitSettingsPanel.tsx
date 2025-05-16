@@ -35,6 +35,22 @@ export default function UnitSettingsPanel() {
           >
             <option value="min">Minutes</option>
             <option value="hr:min">Hours:Minutes</option>
+            <option value="sec">Seconds</option>
+          </select>
+        </div>
+
+         <div className="unit-setting">
+          <label htmlFor="speedUnit">Speed Unit:</label>
+          <select
+            id="speedUnit"
+            value={settings.speedUnit}
+            onChange={(e) =>
+              updateSettings({ speedUnit: e.target.value as "km/h" | "mi/h" | "m/s" })
+            }
+          >
+            <option value="km/h">km/h</option>
+            <option value="mi/h">mi/h</option>
+            <option value="m/s">m/s</option>
           </select>
         </div>
       </div>

@@ -2,7 +2,8 @@ import { createContext, useContext, useState, useEffect, ReactNode } from "react
 
 type UnitSettings = {
   distanceUnit: "m" | "km" | "mi";
-  timeUnit: "min" | "hr:min";
+  timeUnit: "min" | "hr:min" | "sec";
+  speedUnit: "km/h" | "mi/h" | "m/s";
 };
 
 type ContextType = {
@@ -13,6 +14,7 @@ type ContextType = {
 const defaultSettings: UnitSettings = {
   distanceUnit: "km",
   timeUnit: "min",
+  speedUnit: "km/h",
 };
 
 const UserSettingsContext = createContext<ContextType>({

@@ -142,10 +142,29 @@ const DashboardDataPredictions: React.FC = () => {
 										const hours = Math.floor(value / 60);
 										const minutes = Math.round(value % 60);
 										return `${hours}h ${minutes}m`;
+									  } else if (settings.timeUnit === "sec") {
+										const seconds = Math.round(value * 60); 
+										return `${seconds} sec`;
 									  } else {
 										return `${value} min`;
 									  }
 									}
+
+									// Convert speed
+									if (lowerCell.includes("speed")) {
+									let speed = value;
+
+									if (settings.speedUnit === "mi/h") {
+										speed = speed * 0.621371;
+										return `${speed.toFixed(2)} mi/h`;
+									} else if (settings.speedUnit === "m/s") {
+										speed = speed / 3.6;
+										return `${speed.toFixed(2)} m/s`;
+									} else {
+										return `${speed.toFixed(2)} km/h`;
+									}
+									}
+
 								  }
 							  
 								  // Default (no conversion)
