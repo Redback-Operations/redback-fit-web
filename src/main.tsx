@@ -5,15 +5,21 @@ import Root from './routes/Root/Root.tsx';
 import LoginPage from './routes/LoginPage/LoginPage.tsx';
 import Dashboard from './routes/Dashboard/Dashboard.tsx';
 import ReportPage from './routes/ReportPage/ReportPage.tsx';
+import NotificationsPage from './routes/NotificationsPage/NotificationsPage.tsx';
 import HomePage from './routes/HomePage/HomePage.tsx';
 import DataPredictions from './components/DashboardDataPredictions/DashboardDataPredictions.tsx';
 import DashboardLanding from './components/DashboardLanding/DashboardLanding.tsx';
 import ProfilePage from './routes/ProfilePage/ProfilePage';
 import Categories from './components/Categories/Categories.tsx';
 import ReportPageContent from './components/Report/Report.tsx';
+import NotificationsPageContent from './components/Notifications/Notifications.tsx';
 import Features from './components/Features/Features.tsx';
 import SettingsPage from './components/Settings/Settings.tsx';
 import Goals from './components/Goals/Goals.tsx';
+
+import WeeklySummary from './components/WeeklySummary/weeklySummary.tsx';
+import MyFriendsPage from './components/FriendRequest/MyFriendsPage'; 
+import './components/ThemeToggle/theme.css';
 import WeeklySummary from './components/WeeklySummary/weeklySummary.tsx'
 
 const router = createBrowserRouter([
@@ -66,6 +72,11 @@ const router = createBrowserRouter([
 						element: <WeeklySummary />,
 					},
 
+					{
+						path: 'my-friends',
+						element: <MyFriendsPage />, // ✅ Added route
+					}
+
 				]
 			},
 			{
@@ -79,6 +90,16 @@ const router = createBrowserRouter([
 					{
 						path: 'data-predictions',
 						element: <DataPredictions />,
+					}
+				]
+			},
+			{
+				path: 'notifications',
+				element: <NotificationsPage />,
+				children: [
+					{
+						path: '',
+						element: <NotificationsPageContent />,
 					}
 				]
 			}
