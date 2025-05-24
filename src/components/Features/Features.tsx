@@ -57,7 +57,8 @@ const Features: React.FC = () => {
 			.then((json) => {
 				if (Array.isArray(json)) {
 					setFeatures(json);
-				} else {
+				}
+				else {
 					throw new Error('Invalid format');
 				}
 			})
@@ -94,7 +95,7 @@ const Features: React.FC = () => {
 				</p>
 
 				<div>
-					{features.map((feature, index) => (
+					{features.map((feature) => (
 						<div
 							key={feature.title}
 							style={{

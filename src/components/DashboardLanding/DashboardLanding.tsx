@@ -1,19 +1,25 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import * as React from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
-import { HiBell } from 'react-icons/hi';
+import DailyQuote from '../DailyQuote/DailyQuote';
+
 import { IconButton, Badge } from '@mui/material';
 import { NotificationsRounded } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import { FaMagnifyingGlass } from 'react-icons/fa6';
+
 import styles from '../../routes/Dashboard/Dashboard.module.css';
+
 import SessionTable from '../SessionsTable/SessionsTable';
-import data from '../SessionsTable/SessionsTable.json';
+
 import notificationsData from '../Notifications/DummyNotifications.json';
+
 import { Gauge } from '@mui/x-charts-pro';
 import Stack from '@mui/material/Stack';
 import { LineChart } from '@mui/x-charts/LineChart';
+
 import ProfileAvatar from '../ProfileAvatar/ProfileAvatar';
 import LastSynced from '../LastSynced/LastSynced';
 
@@ -31,10 +37,12 @@ const DashboardLanding: React.FC = () => {
 
 	return (
 		<main className={styles.mainContainerLanding}>
+			{/* Header Bar */}
 			<div className={styles.topBar}>
 				<div>
 					<h1 className={styles.dashboardTitle}>Welcome, Austin!</h1>
 					<LastSynced />
+					<DailyQuote />
 				</div>
 
 				<div className={styles.searchAndIcons}>
@@ -48,7 +56,8 @@ const DashboardLanding: React.FC = () => {
 							<Badge
 								badgeContent={unreadCount}
 								color="error"
-								invisible={unreadCount === 0}>
+								invisible={unreadCount === 0}
+							>
 								<NotificationsRounded sx={{ fontSize: 36 }} />
 							</Badge>
 						</IconButton>
@@ -58,6 +67,7 @@ const DashboardLanding: React.FC = () => {
 				</div>
 			</div>
 
+			{/* Heart Rate Section */}
 			<div className={styles.heartRateCalSection}>
 				<div className={styles.heartRateWindow}>
 					<h3 className={styles.componentText}>Heart Rate</h3>
@@ -75,21 +85,18 @@ const DashboardLanding: React.FC = () => {
 						}}
 					>
 						<LineChart
-							xAxis={[{ data: heartRateData.map((entry) => entry.time), label: 'Time (s)' }]}
-							series={[
-								{
-									data: heartRateData.map((entry) => entry.heartRate),
-									label: 'Heart Rate (bpm)',
-								},
-							]}
+							xAxis={[{ data: heartRateData.map(e => e.time), label: 'Time (s)' }]}
+							series={[{ data: heartRateData.map(e => e.heartRate), label: 'Heart Rate (bpm)' }]}
 						/>
 					</div>
 				</div>
 
+				{/* Sessions and Calendar */}
 				<div className={styles.sideBySideComponents}>
 					<div className={styles.SessionsProfileWindow}>
 						<h1>Your Sessions</h1>
-						<SessionTable data={data} />
+						// eslint-disable-next-line @typescript-eslint/no-empty-function, @typescript-eslint/no-empty-function, @typescript-eslint/no-empty-function, @typescript-eslint/no-empty-function
+						<SessionTable onRowClick={() => {}} />
 					</div>
 
 					<div className={styles.calV02Box}>
@@ -100,7 +107,7 @@ const DashboardLanding: React.FC = () => {
 						</div>
 
 						<div className={styles.VO2Window}>
-							<h3 className={styles.componentTextVO2}>V02 Max</h3>
+							<h3 className={styles.componentTextVO2}>VO2 Max</h3>
 							<Stack direction={{ xs: 'column', md: 'row' }} spacing={{ xs: 1, md: 3 }}>
 								<Gauge width={200} height={200} value={80} />
 							</Stack>
@@ -108,6 +115,7 @@ const DashboardLanding: React.FC = () => {
 					</div>
 				</div>
 
+				{/* Performance Tips */}
 				<div className={styles.PerformanceTipsWindow}>
 					<h1>Performance Tips</h1>
 					<ul>
