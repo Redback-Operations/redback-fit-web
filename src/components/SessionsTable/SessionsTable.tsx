@@ -36,7 +36,7 @@ function SortButton({
 }) {
 	return (
 		<button
-			style={{ backgroundColor: 'transparent', borderColor: 'transparent' }}
+			style={{ backgroundColor: 'transparent', borderColor: 'transparent', color : sortKey === columnKey ? 'black' : 'grey' }} // current sort method highlighted in black
 			onClick={onClick}
 			className={`${
 				sortKey === columnKey && sortOrder === 'desc'
@@ -44,7 +44,7 @@ function SortButton({
 					: 'sort-button'
 			}`}
 		>
-			▲
+			{sortKey === columnKey ? sortOrder === 'desc' ? '▼' : '▲'  : '■' /* display appropriate symbol for ascending, descending and no order*/}
 		</button>
 	);
 }
