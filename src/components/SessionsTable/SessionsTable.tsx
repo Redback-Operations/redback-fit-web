@@ -36,7 +36,7 @@ function SortButton({
 }) {
 	return (
 		<button
-			style={{ backgroundColor: 'black' }}
+			style={{ backgroundColor: 'transparent', borderColor: 'transparent' }}
 			onClick={onClick}
 			className={`${
 				sortKey === columnKey && sortOrder === 'desc'
