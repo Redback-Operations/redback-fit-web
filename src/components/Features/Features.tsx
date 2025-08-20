@@ -177,6 +177,8 @@ const Features: React.FC = () => {
 								borderRadius: '30px',
 								cursor: 'pointer',
 							}}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#b3a7b7'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#e97462'; }}
 						>
 							Join Now and Transform Your Fitness
 						</button>

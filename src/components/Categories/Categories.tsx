@@ -258,7 +258,10 @@ const Categories: React.FC = () => {
 												border: 'none',
 												borderRadius: '5px',
 												cursor: 'pointer',
+												transition: 'background-color 0.2s ease-in-out',
 											}}
+											onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#b3a7b7')}
+											onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#008080')}
 										>
 											{expandedCategory === category.name ? 'Show Less' : 'Show More'}
 										</button>
