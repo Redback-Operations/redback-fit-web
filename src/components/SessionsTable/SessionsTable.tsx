@@ -81,7 +81,8 @@ function SessionTable({
 			.then((json) => {
 				if (Array.isArray(json)) {
 					setData(json);
-				} else {
+				}
+				else {
 					throw new Error('Invalid format');
 				}
 			})
