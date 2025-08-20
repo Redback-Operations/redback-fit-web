@@ -1,5 +1,6 @@
 import { MouseEventHandler, useCallback, useEffect, useState } from 'react';
 import localData from '../SessionsTable/SessionsTable.json'; 
+import styled from 'styled-components';
 type DataItem = typeof localData[0];
 type Data = DataItem[];
 type SortKeys = keyof DataItem;
@@ -23,6 +24,16 @@ function sortData({
 	return reverse ? sortedData.reverse() : sortedData;
 }
 
+const StyledButton = styled.button<{ isActive: boolean}>`	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	color: ${({ isActive }) => (isActive ? 'black' : 'grey')}; // change color, black if active, grey otherwise
+	
+	&:hover {
+		color: black; // change color to black when hovered over
+	}
+`;
+
 function SortButton({
 	sortOrder,
 	columnKey,
@@ -34,18 +45,15 @@ function SortButton({
 	sortKey: SortKeys;
 	onClick: MouseEventHandler<HTMLButtonElement>;
 }) {
+	const isActive = sortKey === columnKey; // column is active when sortKey === columnKey
 	return (
-		<button
-			style={{ backgroundColor: 'transparent', borderColor: 'transparent', color : sortKey === columnKey ? 'black' : 'grey' }} // current sort method highlighted in black
+		<StyledButton
+			isActive={isActive}
 			onClick={onClick}
-			className={`${
-				sortKey === columnKey && sortOrder === 'desc'
-					? 'sort-button sort-reverse'
-					: 'sort-button'
-			}`}
+			className={isActive && sortOrder === 'desc' ? 'sort-reverse' : ''}
 		>
 			{sortKey === columnKey ? sortOrder === 'desc' ? '▼' : '▲'  : '■' /* display appropriate symbol for ascending, descending and no order*/}
-		</button>
+		</StyledButton>
 	);
 }
 
