@@ -569,33 +569,35 @@ body {
   color: #ffffff;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .formButton:hover {
-  background-color: #e97462;
+  background-color: #b3a7b7;
 }
 
 
 /* Bottom Section for Drag and Drop CSV Files */
 .bottomSection {
   padding: 20px;
-  width: 50%;
+  width: 100%;
   background-color: white;
   border-radius: 8px;
-  margin: auto;
-  margin-top: 50px;
+  margin: 50px auto 0 auto;
+  overflow-x: auto;
 
 }
 
 .dragDropArea {
   height: 200px;
+  width: 50%;
   border: 2px dashed #e97462;
   color: #e97462;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
@@ -611,30 +613,40 @@ body {
 }
 
 .filePreview {
-  margin-top: 20px;
+  margin-top: 1.5rem;
+  margin-left: 230px;
   border: 1px solid #ccc;
-  padding: 10px;
+  padding: 1rem;
   background-color: #f9f9f9;
   color: #000;
-  overflow: auto;
-  height: 250px;
-  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  height: auto;
+  width: calc(100% - 240px);
+  display: block;
+  justify-content: center;
+  box-sizing: border-box;
+  max-height: unset;
 }
 
 .filePreview table {
-  width: 100%;
+  width: 95%;
   border-collapse: collapse;
+  font-size: 0.95rem;
 }
 
 .filePreview th, .filePreview td {
   border: 1px solid #ddd;
-  padding: 8px;
+  padding: 0.75rem 1rem;
   text-align: left;
+  font-size: 0.95rem;
 }
 
 .filePreview th {
-  background-color: #4a90e2;
+  background-color: #e97462;
   color: white;
+  white-space: nowrap;
+  font-weight: bold;
 }
 
 .resetButton {
@@ -646,6 +658,11 @@ body {
   border-radius: 5px;
   cursor: pointer;
   margin: 10px auto 20px;
+  transition: background-color 0.2s ease;
+}
+
+.resetButton:hover {
+  background-color: #b3a7b7;
 }
 
 .lineChart{

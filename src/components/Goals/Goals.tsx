@@ -123,8 +123,13 @@ const GoalsPage = () => {
 							</div>
 						))}
 
-						<button type="submit" style={styles.button}>
-                            Submit Goals
+						<button
+              type="submit"
+              style={styles.button}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#b3a7b7'; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#e97462'; }}
+              >
+                Submit Goals
 						</button>
 					</form>
 				)}
@@ -243,6 +248,7 @@ const styles = {
 		borderRadius: '5px',
 		cursor: 'pointer',
 		border: 'none',
+		transition: 'background-color 0.2s ease-in-out',
 	},
 	summaryContainer: {
 		marginTop: '20px',
