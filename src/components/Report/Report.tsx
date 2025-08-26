@@ -274,7 +274,7 @@ const DashboardLanding: React.FC = () => {
 						<div className={styles.heartRateCalSection}>
 							<div className={styles.SessionsProfileWindow}>
 								<h1>Your Sessions</h1>
-								<SessionTable data={data} onRowClick={handleRecordClick} />
+								<SessionTable onRowClick={handleRecordClick} />
 							</div>
 						</div>
 					</Box>

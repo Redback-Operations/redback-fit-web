@@ -76,11 +76,21 @@ function SessionTable({
 	];
 	
 	useEffect(() => {
-		fetch('http://localhost:5000/api/dashboard/goals')
+		fetch('http://localhost:5000/api/sessions')
 			.then((res) => res.json())
 			.then((json) => {
 				if (Array.isArray(json)) {
-					setData(json);
+					// map backend type names
+					const mapped = json.map(({ session_id, training, average_heart_rate, ...rest }) => ({
+						...rest,
+						id: session_id,
+						typeOfTraining: training,
+						heartRate: average_heart_rate,
+					}));
+
+					setData(mapped);
+					console.log(json);
+					console.log(mapped);
 				}
 				else {
 					throw new Error('Invalid format');
