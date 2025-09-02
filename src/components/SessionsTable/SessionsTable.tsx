@@ -81,11 +81,12 @@ function SessionTable({
 			.then((json) => {
 				if (Array.isArray(json)) {
 					// map backend type names
-					const mapped = json.map(({ session_id, training, average_heart_rate, ...rest }) => ({
+					const mapped = json.map(({ session_id, training, average_heart_rate, zone_minutes, ...rest }) => ({
 						...rest,
 						id: session_id,
 						typeOfTraining: training,
 						heartRate: average_heart_rate,
+						zoneMinutes: zone_minutes
 					}));
 
 					setData(mapped);
