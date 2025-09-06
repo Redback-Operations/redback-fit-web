@@ -207,6 +207,21 @@ body {
   padding-left: 20px;
 }
 
+/* Make the dashboard a 2-column layout: sidebar | content */
+.dashboardContainer {
+  display: grid;
+  grid-template-columns: 260px 1fr;   /* sidebar width | main content */
+  min-height: 100vh;
+}
+
+.dashboardContent {
+  grid-column: 2;
+  padding: 24px;
+  overflow: auto;
+  min-width: 0;                        
+  box-sizing: border-box;
+}
+
 /* Positioning for container that contains heart rate, calendar and v02 */
 .heartRateCalSection{
   width: 100%;
@@ -672,10 +687,13 @@ body {
   }
 
   .sidebar {
-    position: static;
-    width: 100%;
-    height: auto;
-    border-radius: 0;
+    grid-column: 1;
+    position: sticky;                   
+    top: 0;
+    height: 100vh;
+    z-index: 10;                        
+    width: 260px;                        
+    overflow-y: auto;
   }
 
   .mainContainerLanding {
