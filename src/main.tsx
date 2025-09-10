@@ -18,12 +18,19 @@ import NotificationsPageContent from './components/Notifications/Notifications.t
 import Features from './components/Features/Features.tsx';
 import SettingsPage from './components/Settings/Settings.tsx';
 import Goals from './components/Goals/Goals.tsx';
+<<<<<<< HEAD
+import { Routes, Route } from "react-router-dom";
+import SessionsPage from "./components/SessionsPage/SessionsPage.tsx";
+=======
 import { UserSettingsProvider } from './context/UserSettingsContext.tsx';
+>>>>>>> upstream/main
 
 import CustomNotification from './components/CustomNotification/CustomNotification.tsx';
 import WeeklySummary from './components/WeeklySummary/WeeklySummary.tsx';
 import MyFriendsPage from './components/FriendRequest/MyFriendsPage'; 
 import RecoveryTracker from './components/RecoveryTracker/RecoveryTracker.tsx';
+
+import './firebase';
 
 const router = createBrowserRouter([
 	{
@@ -47,6 +54,7 @@ const router = createBrowserRouter([
 					{ path: 'recovery-tracker', element: <RecoveryTracker /> },
 					{ path: 'weekly-summary', element: <WeeklySummary /> },
 					{ path: 'my-friends', element: <MyFriendsPage /> },
+					{ path: 'sessions', element: <SessionsPage /> },
 				],
 			},
 			{
