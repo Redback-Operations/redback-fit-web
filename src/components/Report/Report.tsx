@@ -9,6 +9,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 
 import { NotificationsRounded, FavoriteBorderRounded, MonitorHeartRounded, FitnessCenterRounded, StackedLineChartRounded, BoltRounded, StairsRounded, DirectionsWalkRounded, AirlineSeatFlatAngledRounded } from '@mui/icons-material';
+import { error } from 'console';
+
+
+interface ActivityResponse {
+	heartRate: number;
+}
 
 interface RecordType {
 	id: number;
@@ -36,9 +42,47 @@ const DashboardLanding: React.FC = () => {
 	const [selectedData, setSelectedData] = useState<RecordType>(data[0]);
 
 	// Handle record selection from the table
-	const handleRecordClick = (record: RecordType) => {
-		setSelectedData(record);
+	const handleRecordClick = async (record: RecordType) => {
+		try {
+			const response = await fetch(`http://localhost:5000/api/sessions/${record.id}/details`); // get all activity information from details endpoint
+			if (!response.ok) {
+				throw new Error(`Error: HTTP ${response.status}`);
+			}
+
+			const data = await response.json();
+			const activity = data.activity;
+			// console.log('Checking activity');
+			// console.log(activity);
+			// console.log('Checking sleep data');
+			// console.log(data.sleep_data);
+
+			const newSelectedData: RecordType = {
+				id: activity.user_id,
+				coach: activity.coach,
+				duration: activity.duration,
+				date: activity.date,
+				typeOfTraining: activity.training,
+				heartRate: activity.average_heart_rate,
+				zoneMinutes: activity.zone_minutes,
+				exerciseDays: 0,
+				distance: activity.distance,
+				calories: activity.calories,
+				floors: activity.floors,
+				sleepDuration: data.sleep_data.duration_minutes,
+				steps: activity.steps,
+				activeZoneMinutes: activity.zone_minutes
+			}
+
+			setSelectedData(newSelectedData);
+		} catch (error) {
+			console.error('Failed to fetch session details', error);
+		}
 	};
+
+	function testDetails () {
+		console.log('Running testDetails');
+		console.log(fetch('http://localhost:5000/api/sessions/1/details'));
+	}
 
 	const theme = createTheme({
 		components: {
