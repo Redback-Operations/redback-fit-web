@@ -1,0 +1,72 @@
+  .unit-panel {
+    background-color: #f0f4f8;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    max-width: 420px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .unit-panel:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+    border-color: #aaa;
+  }
+  
+  .unit-panel h2 {
+    margin-top: 0;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .unit-setting {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+    transition: background-color 0.2s ease;
+  }
+
+  .unit-setting:hover {
+    background-color: rgba(255, 255, 255, 0.6);
+  }
+  
+  .unit-setting label {
+    font-weight: 500;
+    min-width: 100px;
+    color: #444;
+    transition: color 0.2s ease;
+  }
+
+  .unit-setting:hover label {
+    color: #000;
+  }
+  
+  .unit-setting select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #aaa;
+    background-color: #fff;
+    transition: all 0.2s ease;
+  }  
+
+  .unit-setting select:hover {
+    border-color: #666;
+    background-color: #fafafa;
+  }
+
+  .unit-setting select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.25);
+  }
+
+  .unit-panel-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }

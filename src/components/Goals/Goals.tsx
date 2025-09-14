@@ -71,7 +71,11 @@ const GoalsPage = () => {
             {/* Coral info block: keep coral bg, force dark text for contrast */}
             <div style={styles.explanationSection}>
               <p style={styles.explanationText}>
-                Welcome to your fitness goals tracker! This page allows you to set personalized fitness goals for a specific date range. Start by selecting your start and end dates. Once you've chosen your timeframe, fill in your targets for various physical activities. If this is your first time setting goals, aim high but remain realistic. Once you've entered your targets, click the 'Submit Goals' button to save them. After submission, you'll be able to view a summary of your goals.
+                Welcome to your fitness goals tracker! This page allows you to set personalized fitness goals for a
+                specific date range. Start by selecting your start and end dates. Once you've chosen your timeframe,
+                fill in your targets for various physical activities. If this is your first time setting goals, aim high
+                but remain realistic. Once you've entered your targets, click the 'Submit Goals' button to save them.
+                After submission, you'll be able to view a summary of your goals.
               </p>
             </div>
           </>
@@ -125,7 +129,18 @@ const GoalsPage = () => {
               </div>
             ))}
 
-            <button type="submit" style={styles.button}>Submit Goals</button>
+            <button
+              type="submit"
+              style={styles.button}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = '#b3a7b7';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = '#e97462';
+              }}
+            >
+              Submit Goals
+            </button>
           </form>
         )}
 
@@ -134,12 +149,10 @@ const GoalsPage = () => {
             <h2 style={styles.summaryHeading}>Goals Summary</h2>
             <div style={styles.summaryContent}>
               <p>
-                <strong>Start Date:</strong>{' '}
-                {new Date(submittedData.startDate).toLocaleDateString()}
+                <strong>Start Date:</strong> {new Date(submittedData.startDate).toLocaleDateString()}
               </p>
               <p>
-                <strong>End Date:</strong>{' '}
-                {new Date(submittedData.endDate).toLocaleDateString()}
+                <strong>End Date:</strong> {new Date(submittedData.endDate).toLocaleDateString()}
               </p>
 
               {Object.entries(submittedData).map(([key, value]) => {
@@ -147,7 +160,9 @@ const GoalsPage = () => {
                 const label = key.replace(/([A-Z])/g, ' $1').replace(/^./, (s) => s.toUpperCase());
                 return (
                   <div style={styles.goalItem} key={key}>
-                    <p><strong>{label}:</strong> {value}</p>
+                    <p>
+                      <strong>{label}:</strong> {value}
+                    </p>
                     <progress value={parseInt(value)} max={500} style={styles.progressBar} />
                   </div>
                 );
@@ -236,6 +251,7 @@ const styles: StyleMap = {
     borderRadius: '5px',
     cursor: 'pointer',
     border: 'none',
+    transition: 'background-color 0.2s ease-in-out',
   },
   summaryContainer: {
     marginTop: '20px',

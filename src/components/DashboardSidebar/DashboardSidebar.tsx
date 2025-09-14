@@ -57,6 +57,10 @@ const Sidebar: React.FC = () => {
 				<li className={styles.sidebarListItem}>
 					<NavLink to="/dashboard/my-friends"><BsPersonPlusFill /> My Friends</NavLink>
 				</li>
+				<li className={styles.sidebarListItem}>
+  					<NavLink to="/dashboard/sessions"><BsBarChartFill /> Sessions</NavLink>
+				</li>
+
 			</ul>
 
 			<div className={styles.sidebarSettings}>
