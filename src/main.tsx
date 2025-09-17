@@ -1,3 +1,4 @@
+import './global.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -18,69 +19,63 @@ import NotificationsPageContent from './components/Notifications/Notifications.t
 import Features from './components/Features/Features.tsx';
 import SettingsPage from './components/Settings/Settings.tsx';
 import Goals from './components/Goals/Goals.tsx';
-<<<<<<< HEAD
-import { Routes, Route } from "react-router-dom";
-import SessionsPage from "./components/SessionsPage/SessionsPage.tsx";
-=======
-import { UserSettingsProvider } from './context/UserSettingsContext.tsx';
->>>>>>> upstream/main
-
 import CustomNotification from './components/CustomNotification/CustomNotification.tsx';
 import WeeklySummary from './components/WeeklySummary/WeeklySummary.tsx';
-import MyFriendsPage from './components/FriendRequest/MyFriendsPage'; 
+import MyFriendsPage from './components/FriendRequest/MyFriendsPage';
 import RecoveryTracker from './components/RecoveryTracker/RecoveryTracker.tsx';
 
-import './firebase';
+import { ThemeProvider } from './context/ThemeContext';
+
+import './global.css';
+
 
 const router = createBrowserRouter([
-	{
-		element: <Root />,
-		errorElement: <Root />,
-		children: [
-			{ path: '/', element: <HomePage /> },
-			{ path: 'login', element: <LoginPage /> },
-			{ path: 'profile', element: <ProfilePage /> },
-			{
-				path: 'dashboard',
-				element: <Dashboard />,
-				children: [
-					{ path: '', element: <DashboardLanding /> },
-					{ path: 'data-predictions', element: <DataPredictions /> },
-					{ path: 'categories', element: <Categories /> },
-					{ path: 'features', element: <Features /> },
-					{ path: 'goals', element: <Goals /> },
-					{ path: 'custom-notification', element: <CustomNotification /> },
-					{ path: 'settings', element: <SettingsPage /> },
-					{ path: 'recovery-tracker', element: <RecoveryTracker /> },
-					{ path: 'weekly-summary', element: <WeeklySummary /> },
-					{ path: 'my-friends', element: <MyFriendsPage /> },
-					{ path: 'sessions', element: <SessionsPage /> },
-				],
-			},
-			{
-				path: 'reports',
-				element: <ReportPage />,
-				children: [
-					{ path: '', element: <ReportPageContent /> },
-					{ path: 'data-predictions', element: <DataPredictions /> },
-				],
-			},
-			{
-				path: 'notifications',
-				element: <NotificationsPage />,
-				children: [
-					{ path: '', element: <NotificationsPageContent /> },
-				],
-			},
-		],
-	},
+  {
+    element: <Root />,
+    errorElement: <Root />,
+    children: [
+      { path: '/', element: <HomePage /> },
+      { path: 'login', element: <LoginPage /> },
+      { path: 'profile', element: <ProfilePage /> },
+      {
+        path: 'dashboard',
+        element: <Dashboard />,
+        children: [
+          { path: '', element: <DashboardLanding /> },
+          { path: 'data-predictions', element: <DataPredictions /> },
+          { path: 'categories', element: <Categories /> },
+          { path: 'features', element: <Features /> },
+          { path: 'goals', element: <Goals /> },
+          { path: 'custom-notification', element: <CustomNotification /> },
+          { path: 'settings', element: <SettingsPage /> },
+          { path: 'recovery-tracker', element: <RecoveryTracker /> },
+          { path: 'weekly-summary', element: <WeeklySummary /> },
+          { path: 'my-friends', element: <MyFriendsPage /> },
+        ],
+      },
+      {
+        path: 'reports',
+        element: <ReportPage />,
+        children: [
+          { path: '', element: <ReportPageContent /> },
+          { path: 'data-predictions', element: <DataPredictions /> },
+        ],
+      },
+      {
+        path: 'notifications',
+        element: <NotificationsPage />,
+        children: [
+          { path: '', element: <NotificationsPageContent /> },
+        ],
+      },
+    ],
+  },
 ]);
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 ReactDOM.createRoot(document.getElementById('root')!).render(
-	<React.StrictMode>
-		<UserSettingsProvider>
-			<RouterProvider router={router} />
-		</UserSettingsProvider>
-	</React.StrictMode>
+  <React.StrictMode>
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </React.StrictMode>
 );

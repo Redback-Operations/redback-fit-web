@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import './FriendRequest.css';
 import AddFriendModal from './AddFriendModal';
@@ -16,16 +15,18 @@ const MyFriendsPage: React.FC = () => {
   const [showRequests, setShowRequests] = useState(false);
 
   return (
-    <div className="friends-page">
+    <div className="dashboardContent friends-page">
       <h1>My Friends</h1>
+
       <ul className="friends-list">
         {dummyFriends.map((friend, idx) => (
           <li key={idx} className="friend-item">
             <img src={friend.avatar} alt={friend.name} />
-            <span>{friend.name}</span>
+            <span className="friend-name">{friend.name}</span>
           </li>
         ))}
       </ul>
+
       <div className="friend-page-buttons">
         <button onClick={() => setShowRequests(true)}>Friend Requests</button>
         <button onClick={() => setShowAddModal(true)}>Add Friend</button>
