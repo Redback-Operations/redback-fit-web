@@ -76,11 +76,22 @@ function SessionTable({
 	];
 	
 	useEffect(() => {
-		fetch('http://localhost:5000/api/dashboard/goals')
+		fetch('http://localhost:5000/api/sessions')
 			.then((res) => res.json())
 			.then((json) => {
 				if (Array.isArray(json)) {
-					setData(json);
+					// map backend type names
+					const mapped = json.map(({ session_id, training, average_heart_rate, zone_minutes, ...rest }) => ({
+						...rest,
+						id: session_id,
+						typeOfTraining: training,
+						heartRate: fetch('http://localhost:5000/api/sessions/1/details'),
+						zoneMinutes: zone_minutes
+					}));
+
+					setData(mapped);
+					// console.log(json);
+					// console.log(mapped);
 				}
 				else {
 					throw new Error('Invalid format');
@@ -97,14 +108,36 @@ function SessionTable({
 		[data, sortKey, sortOrder]
 	);
 
+	function calcExerciseDays(session: DataItem, date: string) {
+		// console.log(`Session is : ${session}`);
+		const compareDay = new Date(date); // date of selected session
+		let days = 1;
+
+		// loop checks previous 5 days
+		for (let i = 1; i < 5; i++) {
+			// console.log(`Date to compare is ${compareDay}`);
+			const dayBefore = new Date(compareDay); // set to day of selected session
+			dayBefore.setDate(dayBefore.getDate() - i); // go back i number of days
+			// console.log(`Day before is: ${dayBefore}`);
+
+			const foundDate = data.find(session => new Date(session.date).toDateString() === dayBefore.toDateString());
+			if(foundDate != null) days += 1;
+		}
+		// console.log(`Found ${days} days of exercise prior to ${compareDay}`);
+		return days;
+	}
+
 	function changeSort(key: SortKeys) {
 		setSortOrder(sortOrder === 'ascn' ? 'desc' : 'ascn');
 		setSortKey(key);
 	}
 
 	function handleRowClick(session: DataItem) {
+		const days = calcExerciseDays(session, session.date);
+		const updatedSession = { ...session, exerciseDays: days };
+		
 		setSelectedId(session.id);
-		onRowClick(session);
+		onRowClick(updatedSession);
 	}
 
 	return (
