@@ -65,7 +65,7 @@ const DashboardLanding: React.FC = () => {
 				typeOfTraining: activity.training,
 				heartRate: activity.average_heart_rate,
 				zoneMinutes: activity.zone_minutes,
-				exerciseDays: 0,
+				exerciseDays: record.exerciseDays ?? 0,
 				distance: activity.distance,
 				calories: activity.calories,
 				floors: activity.floors,
@@ -81,11 +81,6 @@ const DashboardLanding: React.FC = () => {
 			console.error('Failed to fetch session details', error);
 		}
 	};
-
-	function testDetails () {
-		console.log('Running testDetails');
-		console.log(fetch('http://localhost:5000/api/sessions/1/details'));
-	}
 
 	const theme = createTheme({
 		components: {
