@@ -4,6 +4,7 @@ import ProfilePic from '../../assets/ProfilePic.png'; // Import profile picture
 import SessionTable from '../SessionsTable/SessionsTable';
 import data from '../SessionsTable/SessionsTable.json';
 import notificationsData from '../Notifications/DummyNotifications.json';
+import localData from '../SessionsTable/SessionsTable.json';
 import { Card, CardContent, Typography, Grid, CircularProgress, Box, IconButton, Badge } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
@@ -75,6 +76,8 @@ const DashboardLanding: React.FC = () => {
 
 			setSelectedData(newSelectedData);
 		} catch (error) {
+			console.warn('Using fallback JSON');
+			setSelectedData(localData[record.id - 1]);
 			console.error('Failed to fetch session details', error);
 		}
 	};
