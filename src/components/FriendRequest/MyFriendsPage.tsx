@@ -1,37 +1,57 @@
-
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './FriendRequest.css';
 import AddFriendModal from './AddFriendModal';
 import FriendRequestModal from './FriendRequestModal';
-
-const dummyFriends = [
-  { name: 'Alice Johnson', avatar: 'https://i.pravatar.cc/150?img=10' },
-  { name: 'Ben Kumar', avatar: 'https://i.pravatar.cc/150?img=11' },
-  { name: 'Daisy Lim', avatar: 'https://i.pravatar.cc/150?img=12' },
-  { name: 'Owen Park', avatar: 'https://i.pravatar.cc/150?img=13' },
-];
+import { fetchFriends } from './services/friendsService';
+import type { Friend } from './types';
 
 const MyFriendsPage: React.FC = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showRequests, setShowRequests] = useState(false);
+  const [friends, setFriends] = useState<Friend[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const loadFriends = async () => {
+    setLoading(true);
+    try {
+      const data = await fetchFriends();
+      setFriends(data);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => { loadFriends(); }, []);
 
   return (
     <div className="friends-page">
       <h1>My Friends</h1>
-      <ul className="friends-list">
-        {dummyFriends.map((friend, idx) => (
-          <li key={idx} className="friend-item">
-            <img src={friend.avatar} alt={friend.name} />
-            <span>{friend.name}</span>
-          </li>
-        ))}
-      </ul>
+
+      {loading ? (
+        <p className="modal-subtext">Loading friends…</p>
+      ) : (
+        <ul className="friends-list">
+          {friends.map(friend => (
+            <li key={friend.id} className="friend-item">
+              <img src={friend.avatar} alt={friend.name} />
+              <span>{friend.name}</span>
+            </li>
+          ))}
+          {friends.length === 0 && <p className="modal-subtext">No friends yet.</p>}
+        </ul>
+      )}
+
       <div className="friend-page-buttons">
         <button onClick={() => setShowRequests(true)}>Friend Requests</button>
         <button onClick={() => setShowAddModal(true)}>Add Friend</button>
       </div>
 
-      {showRequests && <FriendRequestModal onClose={() => setShowRequests(false)} />}
+      {showRequests && (
+        <FriendRequestModal
+          onClose={() => setShowRequests(false)}
+          onAnyChange={loadFriends}
+        />
+      )}
       {showAddModal && <AddFriendModal onClose={() => setShowAddModal(false)} />}
     </div>
   );
