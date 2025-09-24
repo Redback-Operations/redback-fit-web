@@ -1,14 +1,15 @@
 import './global.css';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-import Root from './routes/Root/Root.tsx';
-import LoginPage from './routes/LoginPage/LoginPage.tsx';
-import Dashboard from './routes/Dashboard/Dashboard.tsx';
-import ReportPage from './routes/ReportPage/ReportPage.tsx';
-import NotificationsPage from './routes/NotificationsPage/NotificationsPage.tsx';
-import HomePage from './routes/HomePage/HomePage.tsx';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { UserSettingsProvider } from "./context/UserSettingsContext";
+import { AuthProvider } from "./providers/AuthProvider";
+import Root from "./routes/Root/Root";
+import LoginPage from "./routes/LoginPage/LoginPage";
+import Dashboard from "./routes/Dashboard/Dashboard";
+import ReportPage from "./routes/ReportPage/ReportPage";
+import NotificationsPage from "./routes/NotificationsPage/NotificationsPage";
+import HomePage from "./routes/HomePage/HomePage";
 
 import DataPredictions from './components/DashboardDataPredictions/DashboardDataPredictions.tsx';
 import DashboardLanding from './components/DashboardLanding/DashboardLanding.tsx';
@@ -75,7 +76,11 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <ThemeProvider>
-      <RouterProvider router={router} />
+      <UserSettingsProvider>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+      </UserSettingsProvider>
     </ThemeProvider>
   </React.StrictMode>
 );

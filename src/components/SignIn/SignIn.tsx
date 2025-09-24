@@ -1,51 +1,52 @@
-import React, { useState } from 'react';
-
-//Sign-in component
+import React, { useState } from "react";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth } from "../../lib/firebase";
 const Signin: React.FC = () => {
-  //Form input states
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [message, setMessage] = useState<string>('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const [messageStyle, setMessageStyle] = useState<React.CSSProperties>({});
-
-  //Load credentials from environment variables
-  const credentials = {
-    email: import.meta.env.VITE_SIGNIN_EMAIL,
-    password: import.meta.env.VITE_SIGNIN_PASSWORD,
-  };
-
-  // Handle input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    if (name === 'email') {
-      setEmail(value);
-    } else if (name === 'password') {
-      setPassword(value);
-    }
+    if (name === "email") setEmail(value);
+    if (name === "password") setPassword(value);
   };
 
-  // Handle form submit
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    // Check if fields are filled
     if (!email || !password) {
-      setMessage('Fill in all fields');
-      setMessageStyle({ color: 'red', fontWeight: 'bold' });
+      setMessage("Fill in all fields");
+      setMessageStyle({ color: "red", fontWeight: "bold" });
       return;
     }
 
-    // Check credentials
-    if (email === credentials.email && password === credentials.password) {
-      setMessage('Sign in successful!');
-      setMessageStyle({ color: 'green', fontWeight: 'bold' });
-    } else {
-      setMessage('Invalid email or password.');
-      setMessageStyle({ color: 'red', fontWeight: 'bold' });
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      setMessage("Sign in successful!");
+      setMessageStyle({ color: "green", fontWeight: "bold" });
+    } catch (err: any) {
+      setMessage(err.message || "Invalid email or password.");
+      setMessageStyle({ color: "red", fontWeight: "bold" });
     }
   };
 
-  // Render form
+  // Google login
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      setMessage("Signed in with Google!");
+      setMessageStyle({ color: "green", fontWeight: "bold" });
+    } catch (err: any) {
+      setMessage(err.message || "Google sign-in failed.");
+      setMessageStyle({ color: "red", fontWeight: "bold" });
+    }
+  };
+
   return (
     <div className="form-container sign-in-container">
       <form className="form" onSubmit={handleSubmit}>
@@ -66,9 +67,24 @@ const Signin: React.FC = () => {
           onChange={handleChange}
         />
 
-        <button className="form-button">Sign In</button>
+        <button className="form-button" type="submit">
+          Sign In
+        </button>
+
+        {/* Google Sign In Button */}
+        <button
+          type="button"
+          className="form-button"
+          style={{ backgroundColor: "#DB4437", marginTop: "15px" }}
+          onClick={handleGoogleSignIn}
+        >
+          Sign in with Google
+        </button>
+
         <p style={messageStyle}>{message}</p>
-        <a className="find-password" href="#">Forgot Password?</a>
+        <a className="find-password" href="#">
+          Forgot Password?
+        </a>
       </form>
     </div>
   );
