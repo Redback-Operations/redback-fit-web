@@ -24,6 +24,7 @@ import CustomNotification from './components/CustomNotification/CustomNotificati
 import WeeklySummary from './components/WeeklySummary/WeeklySummary.tsx';
 import MyFriendsPage from './components/FriendRequest/MyFriendsPage';
 import RecoveryTracker from './components/RecoveryTracker/RecoveryTracker.tsx';
+import PowerBIPage from './components/PowerBiPage/PowerBiPage.tsx';
 
 import { ThemeProvider } from './context/ThemeContext';
 
@@ -43,6 +44,7 @@ const router = createBrowserRouter([
         element: <Dashboard />,
         children: [
           { path: '', element: <DashboardLanding /> },
+          { path: 'powerbi', element: <PowerBIPage /> },
           { path: 'data-predictions', element: <DataPredictions /> },
           { path: 'categories', element: <Categories /> },
           { path: 'features', element: <Features /> },
