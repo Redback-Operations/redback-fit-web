@@ -1,9 +1,6 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-/* IMPORTANT NOTE! Some of these CSS naming conventions clash with / share the same global name to some elements in Login.style.css.
-Perhaps look into fixing / changing these names if you notice elements unintentionally changing on the Login Page. i.e, .body, .formcontainer etc */
-
 /* Reset and Base Styles */
 body {
   margin: 0;
@@ -22,26 +19,29 @@ body {
 }
 
 /* Sidebar */
-.sidebar, .sidebar * {
-  box-sizing: border-box; /* This ensures padding is included in the width calculation */
-}
+.sidebar, .sidebar * { box-sizing: border-box; }
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  background:#0e080e;
+  background: #ffffff;          /* base; themed below */
   width: 200px;
   height: calc(100vh - 100px);
   position: fixed;
   left: 25px;
   top: 50px;
   overflow-y: auto;
-  padding-top: 30px; /* Further increased top padding for more space */
-  padding-bottom: 20px; /* Bottom padding for aesthetic balance */
+  padding-top: 30px;
+  padding-bottom: 20px;
   box-shadow: 0 20px 12px #270606c7;
   border-radius: 40px;
   z-index: 1000;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+/* Make links/icons inherit the sidebar color */
+.sidebar a,
+.sidebarBottomLink { color: inherit; }
 
 .logo {
   display: flex;
@@ -50,47 +50,46 @@ body {
 }
 
 .logoImage {
-  width: 80px; 
-  height: 80px; 
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
 }
-
 
 .title {
   font-size: 13px;
   font-weight: bold;
-  color: #ffffff;
+  color: inherit;
   text-align: center;
-  padding: 20px 0; /* Increased padding below the logo */
+  padding: 20px 0;
 }
 
 .sidebarList {
   list-style-type: none;
   padding: 0;
-  margin-top: 20px; /* Further increased margin to move items down more */
+  margin-top: 20px;
   margin-bottom: 20px;
   flex-grow: 1;
 }
 
-.sidebarListItem {
-  margin-bottom: 10px;
-}
+.sidebarListItem { margin-bottom: 10px; }
 
-.sidebarListItem a, .sidebarBottomLink { /* Apply similar styles to the bottom link */
+.sidebarListItem a, .sidebarBottomLink {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
-  color: #ffffff;
   padding: 25px 40px;
   font-size: 13px;
   text-decoration: none;
-  transition: background-color 0.3s ease;
-  width: 100%; /* Ensures full width usage */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 100%;
 }
 
-.sidebarListItem a:hover, .sidebarListItem a.active, .sidebarBottomLink:hover {
+.sidebarListItem a:hover,
+.sidebarListItem a.active,
+.sidebarBottomLink:hover {
   background-color: rgb(233, 116, 98);
+  color: #fff;
 }
 
 .sidebarSettings {
@@ -98,116 +97,105 @@ body {
   width: 100%;
   padding-top: 5px;
 }
-
-.sidebarBottomLink {
-  text-align: left; /* Align text to the left */
-}
-
+.sidebarBottomLink { text-align: left; }
 
 /* Main Container Styles */
-
 .topBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom: 20px; /* Space between this section and the power curve */
+  margin-bottom: 20px;
 }
 
 .searchAndIcons {
   display: flex;
   align-items: center;
-  position: absolute; /* Absolute positioning relative to nearest positioned ancestor */
-  right: 10%; /* Adjust based on the exact placement you want */
+  gap: 24px;          /* even space between search, bell, avatar */
+  margin-left: auto;  /* push the whole group to the right */
+  position: relative; /* so the search icon can position against this */
+  right: auto;        /* was 10% */
 }
 
 .searchIcon {
-  color:rgb(0, 0, 0);
-  position: absolute; /* Absolute position within the container */
-  left: 65%; /* Adjust this value to move the icon left or right */
-  height: 60%; /* Match height of the container */
+  color: inherit;
+  position: absolute;   /* sits on top-right inside the input area */
+  right: 12px;
+  height: 20px;
   display: flex;
-  align-items: center; /* Center the icon vertically */
-  z-index: 20;
+  align-items: center;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .searchInput {
   display: flex;
   align-items: center;
-  position: relative; /* Ensure the container is positioned */
-  width: 400px; /* Increase width for a wider appearance */
-  height: 50px;
-  padding: 8px 16px;
-  padding-right: 280px;
-  border: 0.01px solid rgba(0, 0, 0, 0.37); /* More distinct border for a clear outline */
+  position: relative;
+  width: 360px;
+  height: 46px;
+  padding: 10px 44px 10px 16px;  /* room on the right for the search icon */
+  border: 0.01px solid rgba(0, 0, 0, 0.37);
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.144); /* Lighter transparency for a glass effect */
-  backdrop-filter: blur(10px); /* Increased blur for a stronger frosted glass effect */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
-  color: rgb(0, 0, 0); /* White text color */
+  background-color: rgba(255, 255, 255, 0.144);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  color: inherit;
   outline: none;
   font-size: 16px;
 }
-
-.searchInput::placeholder {
-  color: black !important;
-}
+.searchInput::placeholder { color: inherit; }
 
 .bellIcon {
-  color: #fff; /* White icon color */
-  margin: 40px; /* Space between search bar and bell icon */
-  color: rgb(0, 0, 0) !important;
-}
-
-.bellIcon {
-  color: #000000; /* White icon color */
-  margin-left: 40px; /* Space between search bar and bell icon */
-  font-size: 30px; /* Icon size */
+  font-size: 28px;
+  color: inherit;
+  cursor: pointer;
+  margin-left: 0;
 }
 
 .profileIcon {
-  width: 60px; /* Profile icon size */
-  height: 60px; /* Profile icon size */
-  background-color: #ffffff; /* White background for the icon */
-  border-radius: 50%; /* Makes it circular */
-  margin-left: 40px; /* Space between bell icon and profile icon */
-  background-image: url('/path/to/your/profile/image.jpg'); /* Path to your profile image */
+  width: 48px;
+  height: 48px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  background-image: url('/path/to/your/profile/image.jpg');
   background-size: cover;
   background-position: center;
+  cursor: pointer;
+  margin-left: 0;
 }
 
 .mainContainerLanding {
   position: relative;
   width: calc(100vw - 300px);
   left: 260px;
-  top: 5vh;
   right: 4%;
-  top: 5%;
+  top: 5%;                    /* keep one top, removed duplicate 5vh */
   bottom: 5%;
   overflow-y: auto;
   padding: 20px;
   z-index: 500;
   display: flex;
   flex-direction: column;
-  align-items: flex-start; /* Aligns content to the left */
-  background-color: rgba(255, 255, 255, 0.068);  /* Equivalent to #ffffff10 */
-  border-radius: 10px;  /* More noticeable curvature */
-  border: 0.1px solid #00000052;  /* Specifies style and color together */
+  align-items: flex-start;
+  background-color: rgba(255, 255, 255, 0.068);
+  border-radius: 10px;
+  border: 0.1px solid #00000052;
   margin-top: 3%;
   margin-bottom: 3%;
 }
 
-/* Style for the Dashboard Title */
+/* Dashboard Title */
 .dashboardTitle {
-  width: 90%; /* Ensures the title spans most of the container width */
-  margin-bottom: 10px; /* Space between title and content */
-  font-size: 42px; /* Adjust font size as needed */
-  color: rgb(0, 0, 0); /* Adjust color as needed */
-  align-self: flex-start; /* Aligns the title to the left */
+  width: 90%;
+  margin-bottom: 10px;
+  font-size: 42px;
+  color: inherit;
+  align-self: flex-start;
   padding-left: 20px;
 }
 
-/* Positioning for container that contains heart rate, calendar and v02 */
+/* Heart Rate / Calendar / VO2 */
 .heartRateCalSection{
   width: 100%;
   display: flex;
@@ -217,18 +205,16 @@ body {
   height: auto;
 }
 
-/* Container within the main container to be able to stack calendaron vo2 */
 .calV02Box {
   flex: 1 1 calc(25% - 20px);
   flex-wrap: wrap;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Centers children horizontally */
+  align-items: center;
   transition: 1s;
   margin-right: 20px;
 }
 
-/* Style for the Heart Rate Window */
 .heartRateWindow {
   flex: 1 1 calc(65% - 20px);
   margin: 10px;
@@ -239,7 +225,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: 1s; /* Cen  ter-align children horizontally */
+  transition: 1s;
 }
 .heartRateWindow:hover{
   transform:scale(1.01);
@@ -248,16 +234,15 @@ body {
   z-index: 2;
 }
 
-/* Style for side-by-side components */
+/* Side-by-side components */
 .sideBySideComponents {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;  /* Explicitly define as row for clarity */
+  flex-direction: row;
   justify-content: flex-start;
   overflow: hidden;
-  height: auto; /* Align components to the start of the container */
-  /*max-height: 500px;*/
+  height: auto;
   gap: 20px;
 }
 
@@ -271,7 +256,6 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: 1s;
 }
-
 .SessionsProfileWindow:hover{
   transform:scale(1.01);
   background: #ebebeb;
@@ -290,7 +274,6 @@ body {
   overflow: scroll;
   transition: 1s;
 }
-
 .PerformanceTipsWindow:hover{
   transform:scale(1.01);
   background: #ebebeb;
@@ -308,19 +291,17 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: 1s;
 }
-
 .radarChart:hover {
   transform:scale(1.01);
   background: #ebebeb;
   box-shadow: 2px 2px 2px #000;
   z-index: 2;
-
 }
 
 .componentTextVO2{
   font-size: 20px;
   margin-bottom: 10px;
-  color: rgb(0, 0, 0);
+  color: inherit;
   margin-top: 20px;
   text-align: center;
 }
@@ -336,7 +317,6 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transition: 1s;
 }
-
 .VO2Window:hover{
   transform:scale(1.01);
   background: #ebebeb;
@@ -345,14 +325,15 @@ body {
 }
 
 .calendarWindow {
+  position: relative;          /* so inner elements can be absolute */
   max-width: 100%;
   flex: 1 1 30%;
   margin: 10px;
   padding: 20px;
-  background-color: #e97462 ;  /* Light background for the calendar */
-  color:rgb(0, 0, 0);            /* Dark text for better visibility */
-  border-radius: 8px;        /* Optional: rounded corners */
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);  /* Optional: adding some shadow for depth */
+  background-color: #e97462;
+  color: rgb(0, 0, 0);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   transition: 1s;
 }
 .calendarWindow:hover{
@@ -362,41 +343,19 @@ body {
   z-index: 2;
 }
 
-.MuiPickersCalendarHeader-weekDayLabel {
-  color: rgb(255, 255, 255) !important;
-}
-
-
-.calIcon{
-  width: 15%;
-  height: 15%;
-  position: fixed;
-  top: 20px;
-  bottom: 20px;
-  right: 50px;
-  color: #e97462;
-  background-color: white;
-  border-radius: 50%;
-  border: 1px solid grey;
-  padding: 10px;
-}
-
+/* cleaned: no fixed heading */
 .calendarWindow h3{
-  position: fixed;
-  left: 50px;
-  top: 20px;
+  position: static;
+  margin: 0 0 12px;
 }
 
-.calendarWindow p {
-  align-items: center;
-}
+.MuiPickersCalendarHeader-weekDayLabel { color: rgb(255, 255, 255) !important; }
 
+/* Sessions table */
 .SessionsProfileWindow h1{
-  color: rgb(0, 0, 0);
+  color: inherit;
   margin-bottom: 20px;
 }
-
-
 .SessionsProfileWindow table{
   table-layout: fixed;
   width: 100%;
@@ -404,27 +363,19 @@ body {
   left: 15px;
   background-color: #D3D9D4;
 }
-
 .SessionsProfileWindow tbody{
-  background:#748D92  ;
-  color: #f6cefc;
-  background:#e97462d8  ;
-  color: #000000;
+  background:#e97462d8;   /* keep the intended one */
+  color: #000000;         /* keep the intended one */
 }
-
 .SessionsProfileWindow td{
   text-align: center;
-  color: rgb(0, 0, 0);
+  color: inherit;
   font-weight: 500;
   width: 125%;
   font-size: 17px;
   margin-right: 40px;
-
 }
-
-.SessionsProfileWindow th{
-  color: white;
-}
+.SessionsProfileWindow th{ color: white; }
 
 .sort-button{
   background-color: transparent;
@@ -433,89 +384,55 @@ body {
   margin: 0;
   line-height: 1;
   font-size: 15px;
-  color: white;
+  color: inherit;
   cursor: pointer;
-
-}
-.PerformanceTipsWindow h1{
-  color: rgb(0, 0, 0);
-  margin-bottom: 20px;
 }
 
-/* Sample text styling within component windows */
-.componentText {
-  font-size: 20px; /* Standard text size for content */
-  color: black;
-}
+.PerformanceTipsWindow h1{ color: inherit; margin-bottom: 20px; }
+.componentText { font-size: 20px; color: inherit; }
 
-.PerformanceTipsWindow{
-  overflow: hidden;
-}
+.PerformanceTipsWindow{ overflow: hidden; }
 .PerformanceTipsWindow ul{
   align-items: center;
   font-size: 20px;
   overflow: hidden;
-  color: black;
+  color: inherit;
 }
-
-.PerformanceTipsWindow h3{
-  font-size: 24px;
-}
-
+.PerformanceTipsWindow h3{ font-size: 24px; }
 
 /* Responsive Media Queries */
 @media screen and (max-width: 992px) {
-  .gridContainer {
-    grid-template-columns: 260px 1fr;
-  }
+  .gridContainer { grid-template-columns: 260px 1fr; }
 }
+@media screen and (max-width: 768px) { .mainCards { grid-template-columns: 1fr; } }
+@media screen and (max-width: 576px) { .headerLeft { display: none; } }
 
-@media screen and (max-width: 768px) {
-  .mainCards {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .headerLeft {
-    display: none;
-  }
-}
-
-
-
-
-
-/* Top Section for Power Curve Data Visualization (Data & Predictions Test Page*/
-
+/* Data & Predictions page container */
 .mainContainerDataPred {
-  /* Removed position: fixed and related properties */
   overflow-y: auto;
   z-index: 500;
   display: flex;
   flex-direction: column;
-  margin-top: 50px; /* Adds top space similar to 'top: 150px;' in fixed positioning */
-  width: 100%; /* Full width if needed, adjust as necessary */
+  margin-top: 50px;
+  width: 100%;
 }
-
 
 .chartTitle {
-  width: 90%; /* Ensures the title spans most of the container width */
-  margin-bottom: 10px; /* Space between title and content */
-  font-size: 42px; /* Adjust font size as needed */
-  color: black; /* Adjust color as needed */
-  align-self: flex-start; /* Aligns the title to the left */
+  width: 90%;
+  margin-bottom: 10px;
+  font-size: 42px;
+  color: inherit;
+  align-self: flex-start;
   padding-left: 25%;
 }
-
 
 .topSection {
   padding: 20px;
   background-color: #e97462;
   margin-top: 100px;
   margin-bottom: 20px;
-  margin-left: auto;  /* Center horizontally */
-  margin-right: auto;  /* Center horizontally */
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 8px;
   width: 50%;
 }
@@ -532,7 +449,7 @@ body {
   font-size: 16px;
 }
 
-/* Form Container */
+/* Form */
 .formContainer {
   display: flex;
   flex-direction: column;
@@ -541,25 +458,22 @@ body {
   background-color: white;
   border-radius: 8px;
 }
-
 .formLabel {
   display: flex;
   flex-direction: column;
   font-size: 16px;
-  color: black;
+  color: inherit;
 }
-
 .formInput, .formSelect {
   padding: 8px;
   margin-top: 5px;
   border: 1px solid #444;
   border-radius: 4px;
   background-color: white;
-  color: black;
-  width: 100%;  /* Ensure all input elements have the same width */
-  box-sizing: border-box;  /* Include padding and border in the element's total width and height */
+  color: inherit;
+  width: 100%;
+  box-sizing: border-box;
 }
-
 .formButton {
   padding: 10px 20px;
   margin-top: 10px;
@@ -569,85 +483,52 @@ body {
   color: #ffffff;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.3s ease;
 }
+.formButton:hover { background-color: #e97462; }
 
-.formButton:hover {
-  background-color: #b3a7b7;
-}
-
-
-/* Bottom Section for Drag and Drop CSV Files */
+/* Drag & drop */
 .bottomSection {
   padding: 20px;
-  width: 100%;
+  width: 50%;
   background-color: white;
   border-radius: 8px;
-  margin: 50px auto 0 auto;
-  overflow-x: auto;
-
+  margin: auto;
+  margin-top: 50px;
 }
-
 .dragDropArea {
   height: 200px;
-  width: 50%;
   border: 2px dashed #e97462;
   color: #e97462;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   text-align: center;
 }
-
-.dragDropArea:hover {
-  background-color: #ebebeb;
-}
-
-.dragDropArea p {
-  margin: 5px 0;
-}
+.dragDropArea:hover { background-color: #ebebeb; }
+.dragDropArea p { margin: 5px 0; }
 
 .filePreview {
-  margin-top: 1.5rem;
-  margin-left: 230px;
+  margin-top: 20px;
   border: 1px solid #ccc;
-  padding: 1rem;
+  padding: 10px;
   background-color: #f9f9f9;
   color: #000;
-  overflow-x: auto;
-  overflow-y: visible;
-  height: auto;
-  width: calc(100% - 240px);
-  display: block;
-  justify-content: center;
-  box-sizing: border-box;
-  max-height: unset;
+  overflow: auto;
+  height: 250px;
+  width: 100%;
 }
-
-.filePreview table {
-  width: 95%;
-  border-collapse: collapse;
-  font-size: 0.95rem;
-}
-
+.filePreview table { width: 100%; border-collapse: collapse; }
 .filePreview th, .filePreview td {
   border: 1px solid #ddd;
-  padding: 0.75rem 1rem;
+  padding: 8px;
   text-align: left;
-  font-size: 0.95rem;
 }
-
-.filePreview th {
-  background-color: #e97462;
-  color: white;
-  white-space: nowrap;
-  font-weight: bold;
-}
+.filePreview th { background-color: #4a90e2; color: white; }
 
 .resetButton {
   display: block;
@@ -658,83 +539,131 @@ body {
   border-radius: 5px;
   cursor: pointer;
   margin: 10px auto 20px;
-  transition: background-color 0.2s ease;
 }
 
-.resetButton:hover {
-  background-color: #b3a7b7;
-}
+.lineChart{ max-height: 40vh; min-height: 30vh; }
 
-.lineChart{
-  max-height: 40vh;
-  min-height: 30vh;
-}
-
-/*
- Responsiveness design
- */
+/* Responsiveness */
 @media screen and (max-width: 1450px) {
-  .sideBySideComponents{
-    flex-direction: column;
-  }
+  .sideBySideComponents{ flex-direction: column; }
   .SessionsProfileWindow, .PerformanceTipsWindow, .radarChart{
     max-width: 100%;
     width: 100%;
   }
 }
-
 @media screen and (max-width: 992px) {
-  .gridContainer {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    position: static;
-    width: 100%;
-    height: auto;
-    border-radius: 0;
-  }
-
-  .mainContainerLanding {
-    width: 100%;
-    left: 0;
-    padding: 10px;
-  }
-
-  .heartRateCalSection, .sideBySideComponents {
-    flex-direction: column;
-  }
-
+  .gridContainer { grid-template-columns: 1fr; }
+  .sidebar { position: static; width: 100%; height: auto; border-radius: 0; }
+  .mainContainerLanding { width: 100%; left: 0; padding: 10px; }
+  .heartRateCalSection, .sideBySideComponents { flex-direction: column; }
   .heartRateWindow, .calV02Box, .calendarWindow, .VO2Window, .SessionsProfileWindow, .PerformanceTipsWindow, .radarChart {
-    flex: 1 1 100%;
-    margin: 0;
-    max-width: 100%;
+    flex: 1 1 100%; margin: 0; max-width: 100%;
   }
 }
-
-
 @media screen and (max-width: 576px) {
-  .topBar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .searchInput {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-
-  .bellIcon {
-    font-size: 25px;
-  }
-
-  .profileIcon {
-    width: 50px;
-    height: 50px;
-  }
-
+  .topBar { flex-direction: column; align-items: flex-start; }
+  .searchInput { width: 100%; margin-bottom: 10px; }
+  .bellIcon { font-size: 25px; }
+  .profileIcon { width: 50px; height: 50px; }
   .heartRateWindow, .calV02Box, .calendarWindow, .VO2Window, .SessionsProfileWindow, .PerformanceTipsWindow, .radarChart {
     margin-bottom: 20px;
   }
 }
 
+/* ===== CSS-Modules aware THEME OVERRIDES ===== */
+
+/* Sidebar theme inversion */
+:global(html.light) :local(.sidebar) {
+  background-color: #0e080e;
+  color: #ffffff;
+}
+:global(html.dark) :local(.sidebar) {
+  background-color: #ffffff;
+  color: #000000;
+}
+/* Sidebar caption below logo */
+:global(html.light) :local(.sidebar) :local(.title) { color: #ffffff; }
+:global(html.dark)  :local(.sidebar) :local(.title) { color: #000000; }
+/* (optional) links inherit */
+:global(html.light) :local(.sidebar) a,
+:global(html.dark)  :local(.sidebar) a { color: inherit; }
+
+/* Base content area */
+:global(html.dark) :local(.dashboardContent) {
+  background-color: #0f1115 !important;
+  color: #e6e8eb !important;
+}
+/* Make all text readable inside content */
+:global(html.dark) :local(.dashboardContent) * { color: #e6e8eb !important; }
+/* Stronger headings */
+:global(html.dark) :local(.dashboardContent) h1,
+:global(html.dark) :local(.dashboardContent) h2,
+:global(html.dark) :local(.dashboardContent) h3 { color: #f3f5f7 !important; }
+/* Inputs inside content */
+:global(html.dark) :local(.dashboardContent) input,
+:global(html.dark) :local(.dashboardContent) select,
+:global(html.dark) :local(.dashboardContent) textarea {
+  background-color: #14171d !important;
+  border-color: #2a2f37 !important;
+  color: #e6e8eb !important;
+}
+:global(html.dark) :local(.dashboardContent) input::placeholder,
+:global(html.dark) :local(.dashboardContent) textarea::placeholder { color: #a9b1bb !important; }
+
+/* Search field */
+:global(html.dark) :local(.searchInput) {
+  background-color: #171a21 !important;
+  border-color: #2a2f37 !important;
+  color: #e6e8eb !important;
+}
+:global(html.dark) :local(.searchInput)::placeholder { color: #a9b1bb !important; }
+
+/* Keep coral cards but make text dark for contrast */
+:global(html.dark) :local(.heartRateWindow),
+:global(html.dark) :local(.SessionsProfileWindow),
+:global(html.dark) :local(.PerformanceTipsWindow),
+:global(html.dark) :local(.radarChart),
+:global(html.dark) :local(.VO2Window),
+:global(html.dark) :local(.calendarWindow),
+:global(html.dark) :local(.topSection),
+:global(html.dark) :local(.dragDropArea) {
+  background-color: #e97462 !important;
+  color: #111 !important;
+  border-color: transparent !important;
+}
+:global(html.dark) :local(.heartRateWindow) h1,
+:global(html.dark) :local(.heartRateWindow) h2,
+:global(html.dark) :local(.heartRateWindow) p,
+:global(html.dark) :local(.SessionsProfileWindow) h1,
+:global(html.dark) :local(.PerformanceTipsWindow) h1,
+:global(html.dark) :local(.PerformanceTipsWindow) p,
+:global(html.dark) :local(.VO2Window) h1,
+:global(html.dark) :local(.calendarWindow) h1,
+:global(html.dark) :local(.calendarWindow) p,
+:global(html.dark) :local(.topSection) h1 { color: #111 !important; }
+
+/* Tables (Recovery / Reports) */
+:global(html.dark) :local(.dashboardContent) table {
+  background-color: #171a21 !important;
+  color: #e6e8eb !important;
+  border-color: #2a2f37 !important;
+}
+:global(html.dark) :local(.dashboardContent) th {
+  background-color: #1b1f26 !important;
+  color: #e6e8eb !important;
+  border-color: #2a2f37 !important;
+}
+:global(html.dark) :local(.dashboardContent) td { border-color: #2a2f37 !important; }
+
+/* Recharts */
+:global(html.dark) .recharts-text { fill: #e6e8eb !important; }
+:global(html.dark) .recharts-cartesian-grid-horizontal line,
+:global(html.dark) .recharts-cartesian-grid-vertical line { stroke: #3a3f47 !important; }
+
+/* Keep dark text on coral hovers */
+:global(html.dark) [class*="heartRateWindow"]:hover,
+:global(html.dark) [class*="SessionsProfileWindow"]:hover,
+:global(html.dark) [class*="PerformanceTipsWindow"]:hover,
+:global(html.dark) [class*="radarChart"]:hover,
+:global(html.dark) [class*="VO2Window"]:hover,
+:global(html.dark) [class*="calendarWindow"]:hover { color: #111 !important; }

@@ -24,7 +24,7 @@ const MyFriendsPage: React.FC = () => {
   useEffect(() => { loadFriends(); }, []);
 
   return (
-    <div className="friends-page">
+    <div className="dashboardContent friends-page">
       <h1>My Friends</h1>
 
       {loading ? (

@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import React, { CSSProperties } from 'react';
 import LastSynced from '../LastSynced/LastSynced';
 
 
@@ -720,7 +721,6 @@ const styles = {
    fontSize: '14px',
  },
 } as const;
-
 
 export default GoalsPage;
 

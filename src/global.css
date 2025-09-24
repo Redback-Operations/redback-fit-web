@@ -1,0 +1,361 @@
+/* =======================
+   GLOBAL THEME FOUNDATION
+   ======================= */
+
+/* LIGHT THEME */
+html.light body {
+  background-color: #f5f5f7;
+  color: #1e1e1e;
+}
+
+/* DARK THEME (layered darks) */
+html.dark body {
+  background-color: #0f1115;   /* page background */
+  color: #e6e8eb;
+}
+
+/* Links */
+html.light a { color: #1a0dab; }
+html.dark  a { color: #80bfff; }
+
+/* Buttons */
+button {
+  transition: background-color .3s ease, color .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+html.light button {
+  background-color: #e97462;
+  color: #fff;
+}
+html.dark button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #2a2f37;
+  box-shadow: 0 1px 2px rgba(0,0,0,.6), 0 12px 32px rgba(0,0,0,.35);
+}
+
+/* Inputs */
+input, select, textarea {
+  background-color: inherit;
+  color: inherit;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 8px;
+}
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #171a21;
+  color: #e6e8eb;
+  border: 1px solid #2a2f37;
+}
+
+/* Smooth text transitions */
+h1, h2, h3, h4, h5, h6, p {
+  transition: color .3s ease, background-color .3s ease, border-color .3s ease;
+}
+
+/* Placeholders */
+html.light input::placeholder,
+html.light textarea::placeholder { color: #555; }
+html.dark  input::placeholder,
+html.dark  textarea::placeholder  { color: #a9b1bb; }
+
+/* ==========================
+   DASHBOARD-WIDE DARK FIXES
+   ========================== */
+
+/* 1) Readable base surface for *all* content areas in dark mode */
+html.dark .dashboardContent,
+html.dark [class*="dashboardContent"],
+html.dark [class*="mainContainerLanding"],
+html.dark [class*="mainContainerDataPred"],
+html.dark [class*="Container"],
+html.dark [class*="Section"],
+html.dark [class*="Content"],
+html.dark [class*="Panel"],
+html.dark [class*="Window"],
+html.dark [class*="Box"],
+html.dark [class*="Goals"],
+html.dark [id*="goals"],
+html.dark [class*="Reports"],
+html.dark [id*="reports"] {
+  background-color: #171a21 !important;
+  color: #e6e8eb !important;
+  border-color: #2a2f37 !important;
+  box-shadow: 0 1px 2px rgba(0,0,0,.6), 0 12px 32px rgba(0,0,0,.35);
+}
+
+/* 2) Make all text inside content readable */
+html.dark .dashboardContent,
+html.dark [class*="dashboardContent"] *:not(svg):not(path),
+html.dark [class*="Goals"] *,
+html.dark [id*="goals"] *,
+html.dark [class*="Reports"] *,
+html.dark [id*="reports"] * {
+  color: #e6e8eb !important;
+}
+
+/* Headings pop a bit more */
+html.dark .dashboardContent h1,
+html.dark .dashboardContent h2,
+html.dark .dashboardContent h3 { color: #f3f5f7 !important; }
+
+/* Muted helper text */
+html.dark .dashboardContent .muted,
+html.dark .dashboardContent small,
+html.dark .dashboardContent .subtle { color: #b9c1cc !important; }
+
+/* 3) Forms/inputs within content */
+html.dark .dashboardContent input,
+html.dark .dashboardContent select,
+html.dark .dashboardContent textarea {
+  background-color: #14171d !important;
+  border-color: #2a2f37 !important;
+  color: #e6e8eb !important;
+}
+html.dark .dashboardContent input::placeholder,
+html.dark .dashboardContent textarea::placeholder { color: #a9b1bb !important; }
+
+/* 4) Search inputs everywhere */
+.searchInput {
+  background-color: #ffffff;
+  border: 1px solid #e2e5e9;
+  color: #1e1e1e;
+  box-shadow: 0 1px 3px rgba(0,0,0,.08), 0 6px 24px rgba(0,0,0,.06);
+}
+html.dark .searchInput,
+html.dark [class*="searchInput"] {
+  background-color: #171a21 !important;
+  border-color: #2a2f37 !important;
+  color: #e6e8eb !important;
+}
+html.light .searchInput::placeholder { color: #555 !important; }
+html.dark  .searchInput::placeholder,
+html.dark  [class*="searchInput"]::placeholder { color: #a9b1bb !important; }
+
+/* 5) Keep brand coral sections but flip their text to dark for contrast */
+html.dark [class*="heartRateWindow"],
+html.dark [class*="SessionsProfileWindow"],
+html.dark [class*="PerformanceTipsWindow"],
+html.dark [class*="radarChart"],
+html.dark [class*="VO2Window"],
+html.dark [class*="calendarWindow"],
+html.dark [class*="topSection"],
+html.dark [class*="dragDropArea"] {
+  background-color: #e97462 !important;
+  color: #111 !important;
+  border-color: transparent !important;
+}
+html.dark [class*="heartRateWindow"] h1,
+html.dark [class*="heartRateWindow"] h2,
+html.dark [class*="heartRateWindow"] p,
+html.dark [class*="SessionsProfileWindow"] h1,
+html.dark [class*="SessionsProfileWindow"] p,
+html.dark [class*="PerformanceTipsWindow"] h1,
+html.dark [class*="PerformanceTipsWindow"] p,
+html.dark [class*="VO2Window"] h1,
+html.dark [class*="calendarWindow"] h1,
+html.dark [class*="calendarWindow"] p,
+html.dark [class*="topSection"] h1 { color: #111 !important; }
+
+/* Links on coral cards should also be dark */
+html.dark [class*="heartRateWindow"] a,
+html.dark [class*="SessionsProfileWindow"] a,
+html.dark [class*="PerformanceTipsWindow"] a,
+html.dark [class*="radarChart"] a,
+html.dark [class*="VO2Window"] a,
+html.dark [class*="calendarWindow"] a,
+html.dark [class*="topSection"] a,
+html.dark [class*="dragDropArea"] a { color: #111 !important; }
+
+/* 6) Tables look right in dark (Recovery/Reports/etc.) */
+html.dark .dashboardContent table {
+  background-color: #171a21 !important;
+  color: #e6e8eb !important;
+  border-color: #2a2f37 !important;
+}
+html.dark .dashboardContent th {
+  background-color: #1b1f26 !important;
+  color: #e6e8eb !important;
+  border-color: #2a2f37 !important;
+}
+html.dark .dashboardContent td { border-color: #2a2f37 !important; }
+
+/* 7) Charts (Recharts) */
+html.dark .recharts-text { fill: #e6e8eb !important; }
+html.dark .recharts-legend-item-text { fill: #e6e8eb !important; }
+html.dark .recharts-cartesian-grid-horizontal line,
+html.dark .recharts-cartesian-grid-vertical line { stroke: #3a3f47 !important; }
+
+/* 8) Buttons inside content that forgot their theme */
+html.dark .dashboardContent button {
+  border-color: #2a2f37 !important;
+  color: #e6e8eb !important;
+}
+
+/* 9) MUI tweaks (date pickers, inputs) if present */
+html.dark .MuiPickersDay-root,
+html.dark .MuiFormLabel-root,
+html.dark .MuiInputBase-input { color: #e6e8eb !important; }
+html.dark .MuiOutlinedInput-notchedOutline { border-color: #2a2f37 !important; }
+
+/* ========= ICON VISIBILITY – DARK MODE ========= */
+
+/* Default: make SVG-based icons readable inside dashboard content */
+html.dark .dashboardContent svg:not(.recharts-surface),
+html.dark .dashboardContent svg:not(.recharts-surface) * {
+  color: #e6e8eb !important;
+  fill:  #e6e8eb !important;
+  stroke:#e6e8eb !important;
+}
+
+/* Material UI icons */
+html.dark .dashboardContent .MuiSvgIcon-root {
+  color: #e6e8eb !important;
+}
+
+/* If your report cards use the coral brand background, keep icon color dark for contrast */
+html.dark .dashboardContent [class*="heartRateWindow"] svg,
+html.dark .dashboardContent [class*="SessionsProfileWindow"] svg,
+html.dark .dashboardContent [class*="PerformanceTipsWindow"] svg,
+html.dark .dashboardContent [class*="radarChart"] svg,
+html.dark .dashboardContent [class*="VO2Window"] svg,
+html.dark .dashboardContent [class*="calendarWindow"] svg,
+html.dark .dashboardContent [class*="topSection"] svg,
+html.dark .dashboardContent [class*="dragDropArea"] svg {
+  color: #111 !important;
+  fill:  #111 !important;
+  stroke:#111 !important;
+}
+
+/* Don’t mess with Recharts drawings (axes, grids, etc.) – already themed above */
+html.dark .dashboardContent .recharts-wrapper svg *,
+html.dark .dashboardContent svg.recharts-surface * {
+  fill: initial !important;
+  stroke: initial !important;
+  color: initial !important;
+}
+
+/* Fix Recovery Tracker banner text in dark mode */
+html.dark [class*="RecoveryTracker"] .banner,
+html.dark [class*="RecoveryTracker"] .banner *,
+html.dark .recoveryBanner,
+html.dark .recoveryBanner * {
+  color: #111 !important;   /* strong dark text for readability */
+  font-weight: 600;
+}
+
+/* ================================
+   DARK MODE — FINAL DASHBOARD FIXES
+   (append at the very end of global.css)
+   ================================ */
+
+/* A) Coral tiles/banners on any dashboard page
+   (Recovery tips, Weekly Summary stat cards, coral sections, etc.)
+   — keep coral background BUT force dark text for contrast */
+html.dark .dashboardContent [class*="banner"],
+html.dark .dashboardContent [class*="tip"],
+html.dark .dashboardContent [class*="pill"],
+html.dark .dashboardContent [class*="notice"],
+html.dark .dashboardContent [class*="alert"],
+html.dark .dashboardContent [class*="statCard"],
+html.dark .dashboardContent [class*="StatCard"],
+html.dark .dashboardContent [class*="heartRateWindow"],
+html.dark .dashboardContent [class*="SessionsProfileWindow"],
+html.dark .dashboardContent [class*="PerformanceTipsWindow"],
+html.dark .dashboardContent [class*="radarChart"],
+html.dark .dashboardContent [class*="VO2Window"],
+html.dark .dashboardContent [class*="calendarWindow"],
+html.dark .dashboardContent [class*="topSection"],
+html.dark .dashboardContent [class*="dragDropArea"] {
+  background-color: #e97462 !important;
+  color: #111 !important;
+  border-color: transparent !important;
+}
+html.dark .dashboardContent [class*="banner"] *,
+html.dark .dashboardContent [class*="tip"] *,
+html.dark .dashboardContent [class*="pill"] *,
+html.dark .dashboardContent [class*="notice"] *,
+html.dark .dashboardContent [class*="alert"] *,
+html.dark .dashboardContent [class*="statCard"] *,
+html.dark .dashboardContent [class*="StatCard"] * {
+  color: #111 !important;
+}
+
+/* B) Recovery Tracker table — make header/body visible in dark */
+html.dark .dashboardContent [class*="Recovery"] table,
+html.dark .dashboardContent [class*="RecoveryTracker"] table {
+  background-color: #171a21 !important;
+  color: #e6e8eb !important;
+  border-color: #2a2f37 !important;
+}
+html.dark .dashboardContent [class*="Recovery"] th,
+html.dark .dashboardContent [class*="RecoveryTracker"] th {
+  background-color: #1b1f26 !important;
+  color: #e6e8eb !important;
+  border-color: #2a2f37 !important;
+}
+html.dark .dashboardContent [class*="Recovery"] td,
+html.dark .dashboardContent [class*="RecoveryTracker"] td {
+  border-color: #2a2f37 !important;
+}
+
+/* range/checkbox controls in Recovery should be visible */
+html.dark .dashboardContent input[type="range"]::-webkit-slider-runnable-track { background: #d1d5db !important; }
+html.dark .dashboardContent input[type="range"]::-moz-range-track            { background: #d1d5db !important; }
+html.dark .dashboardContent input[type="range"]::-webkit-slider-thumb        { background: #374151 !important; border: 1px solid #111 !important; }
+html.dark .dashboardContent input[type="range"]::-moz-range-thumb            { background: #374151 !important; border: 1px solid #111 !important; }
+html.dark .dashboardContent input[type="checkbox"] { accent-color: #e97462; }
+
+/* C) Weekly Summary — chart + labels + grid lines readable */
+html.dark .dashboardContent [class*="Weekly"] .recharts-text,
+html.dark .dashboardContent [class*="WeeklySummary"] .recharts-text {
+  fill: #e6e8eb !important;
+}
+html.dark .dashboardContent [class*="Weekly"] .recharts-legend-item-text,
+html.dark .dashboardContent [class*="WeeklySummary"] .recharts-legend-item-text {
+  fill: #e6e8eb !important;
+}
+html.dark .dashboardContent [class*="Weekly"] .recharts-cartesian-axis-line,
+html.dark .dashboardContent [class*="WeeklySummary"] .recharts-cartesian-axis-line,
+html.dark .dashboardContent [class*="Weekly"] .recharts-cartesian-axis-tick-line,
+html.dark .dashboardContent [class*="WeeklySummary"] .recharts-cartesian-axis-tick-line {
+  stroke: #6b7280 !important; /* brighter axes */
+}
+html.dark .dashboardContent [class*="Weekly"] .recharts-cartesian-grid line,
+html.dark .dashboardContent [class*="WeeklySummary"] .recharts-cartesian-grid line {
+  stroke: #2f3540 !important; /* brighter grid */
+}
+
+/* D) My Friends page — white cards must use dark text in dark mode */
+html.dark .dashboardContent [class*="Friends"] [class*="card"],
+html.dark .dashboardContent [class*="Friends"] [class*="item"],
+html.dark .dashboardContent [class*="friend"] [class*="card"],
+html.dark .dashboardContent [class*="friend"] [class*="item"] {
+  background: #ffffff !important;
+  border-color: #e5e7eb !important;
+  color: #111 !important;
+}
+html.dark .dashboardContent [class*="Friends"] [class*="card"] *,
+html.dark .dashboardContent [class*="Friends"] [class*="item"] *,
+html.dark .dashboardContent [class*="friend"] [class*="card"] *,
+html.dark .dashboardContent [class*="friend"] [class*="item"] * {
+  color: #111 !important;
+}
+
+/* E) Generic SVG/icon rule inside dashboard (keeps icons visible),
+      but DO NOT override Recharts drawings */
+html.dark .dashboardContent svg:not(.recharts-surface):not([data-skip-dark]),
+html.dark .dashboardContent svg:not(.recharts-surface):not([data-skip-dark]) * {
+  color: #e6e8eb !important;
+  fill:  #e6e8eb !important;
+  stroke:#e6e8eb !important;
+}
+html.dark .dashboardContent .MuiSvgIcon-root { color: #e6e8eb !important; }
+/* Keep Recharts free to use its own colors (we already set them above) */
+html.dark .dashboardContent .recharts-wrapper svg *,
+html.dark .dashboardContent svg.recharts-surface * {
+  fill: initial !important;
+  stroke: initial !important;
+  color: initial !important;
+}
