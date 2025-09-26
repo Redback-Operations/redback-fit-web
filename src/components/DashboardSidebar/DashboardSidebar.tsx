@@ -31,6 +31,9 @@ const Sidebar: React.FC = () => {
 					<NavLink to="/dashboard"><BsGrid1X2Fill /> Dashboard</NavLink>
 				</li>
 				<li className={styles.sidebarListItem}>
+  					<NavLink to="/dashboard/powerbi"><BsBarChartFill />Wearable Performance Insights</NavLink>
+				</li>
+				<li className={styles.sidebarListItem}>
 					<NavLink to="/dashboard/features"><BsFillArchiveFill /> Features</NavLink>
 				</li>
 				<li className={styles.sidebarListItem}>
